@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // -------------------------注意！ 语句中括号和括号会让js解释器误解，须在开头加分号 ';'
+        const arr = ['孙悟空', '猪八戒', '沙和尚',{name:'唐曾'}]
+        let [a, b, c, d] = arr  //定义四个变量abcd来快速获取数组arr中的值
+        console.log(a, b, c, d)
+        let [e, ...f] = arr //定义一个变量e和一个数组f来获取数组arr中的值  ,数组f会获取所有剩余的元素
+        console.log(e, f)
+
+         //测试f是否属于拷贝
+        f[0] = 111  
+        console.log(f)
+        f[2].name = '白骨精' 
+        console.log(arr)  //f属于浅拷贝
+
+        //当变量多于元素时，多余的变量会被赋值为undefined  保持原值需要加上 z=z
+        let [x, y, z] = [1, 2, 3]
+        console.log(x, y, z)
+        z = 3
+        ;[x, y, z] = [1, 2]
+        console.log(x, y, z)
+
+        //二维数组解构
+        console.log('-------------------------------------')
+        const arr2 = [[1, 2, 3], ['a', 'b', 'c']]
+        ;[[a, b, c]] = arr2
+        console.log(a, b, c)
+    </script>
+</body>
+</html>

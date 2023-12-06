@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input[id="mingzi"]:focus {
+            background-color: red;
+        }
+        select>option:checked {
+            color: red;
+        }
+        button[type="submit"] {
+            color: rgb(48, 48, 206);
+            background-color: rgb(141, 90, 90);
+        }
+    </style>
+</head>
+<body>
+    <form action="https://search.jd.com/search" target="_blank" method="get">
+        <fieldset>
+            <legend>主要信息</legend>
+            <label for="mingzi">姓名：</label>
+            <input id="mingzi" type="text" maxlength="20" name="name" value="张三">
+            <br>
+            <lable>
+                密钥：
+                <input type="password" maxlength="6" name="pwd" value="123456">
+            </lable>
+            <br>
+        性别：<input type="radio" name="gender" value="male" checked>男 <input type="radio" name="gender" value="female">女
+        <br>
+        </fieldset>
+        爱好：<input disabled type="checkbox" name="hobby" value="smoke">抽烟 
+             <input disabled type="checkbox" name="hobby" value="drink">喝酒 
+             <input type="checkbox" name="hobby" checked value="perm">烫头<br>
+        优点：<textarea name="" id="" cols="20" rows="2"></textarea><br>
+        籍贯：<select name="from">
+                <option value="non">暂不选择</option>
+                <option value="京">北京</option>
+                <option value="沪">上海</option>
+                <option value="粤" selected>广东</option>
+             </select><br>
+        <button type="submit">确认</button> <!--<input type="submit">确认-->
+        <button type="reset">重置</button> <!--<input type="reset">重置-->
+        <button type="button">检测</button>
+        <input type="hidden" name="security" value="sparrow">
+    </form>
+</body>
+</html>

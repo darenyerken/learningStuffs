@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        /* 重点：重复渐变就是在纯色区域重新渐变 */
+        .box1 {
+            width: 400px;
+            height: 300px;
+            border: solid 1px black;
+            margin: 0 auto;
+            margin-top: 30px;
+
+            background-image: repeating-linear-gradient(180deg,red 0px,black 150px,white 300px);
+        }
+        .box2 {
+            width: 400px;
+            height: 300px;
+            border: solid 1px black;
+            margin: 0 auto;
+            margin-top: 30px;
+            /* border-radius: 50%; */
+
+            background-image: repeating-radial-gradient(50px 50px,red 50px,black 100px,white 150px);
+        }
+    </style>
+</head>
+<body>
+    <div class="box1">线性渐变</div>
+    <div class="box2">径向渐变</div>
+</body>
+</html>

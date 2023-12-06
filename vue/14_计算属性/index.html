@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+    <style>
+        html{
+            background-color: #666;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="box">
+        {{name}}
+        <br>
+        <!-- 计算属性方式 -->
+        <!-- 用处，不让模板快臃肿 -->
+        <!-- 与方法相比较特点：在原始状态不改变的情况下，不会反复执行计算 -->
+        <!-- 而是将计算结果缓存下来可以复用 -->
+        <!-- 函数式写法的计算属性是只读的 -->
+        <!-- 对象式的写法可以改变计算属性 -->
+        <!-- 原始属性改变后会立即计算并返回，不会等待异步操作 -->
+        {{computedName}}
+        {{computedName}}
+        {{computedName}}
+        <br>
+        <!-- 方法方法:必须加小括号 -->
+        <!-- {{methodName}} -->
+        {{methodName()}}
+        {{methodName()}}
+        {{methodName()}}
+    </div>
+
+    <script>
+        const obj = {
+            data() {
+                return {
+                    name:'kerwin'
+                }
+            },
+            computed:{
+                computedName(){         //函数式写法
+                    console.log('111')
+                    return this.name.substring(0,1).toUpperCase()+this.name.substring(1)
+                },
+                // computedName:{       //对象式写法
+                //     get(){
+                //         console.log('111')
+                //         return this.name.substring(0,1).toUpperCase()+this.name.substring(1)
+                //     },
+                //     set(value){
+                //         // ...
+                //     }
+                // }
+            },
+            methods:{
+                methodName(){
+                    console.log('222')
+                    return this.name.substring(0,1).toUpperCase()+this.name.substring(1)
+                }
+            }
+        }
+        const app = Vue.createApp(obj).mount('#box')
+    </script>
+</body>
+
+</html>

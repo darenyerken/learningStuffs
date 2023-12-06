@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        //包装类：
+        //  - 当一个原始值调用一个方法，例如num.toString()时候，js解释器会临时给原始值num创建一个对象并调用toString方法，调用完立即销毁
+        //含有包装类的类型:
+        //      -String
+        //        -Number
+        //        -Boolean
+        //        -BigInt
+        //       -Symbol
+        //       -其他都没有
+
+        let num = 10
+        num = num.toString()
+        console.log(num)
+        num.name = 'hello'  //这里临时给num创建了一个对象并设置属性name，然后立即销毁
+        console.log(num.name)  // 这里又临时给num创建了另一个对象并读取属性name,
+    </script>
+</body>
+</html>

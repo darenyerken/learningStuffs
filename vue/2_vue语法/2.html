@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+    <style>
+        
+    </style>
+</head>
+<body>
+    <div id="box">
+        <button @click="fn()">按钮</button>
+        <div v-show="isShow">这里是显示和隐藏内容</div>
+        <div v-if="isExist">这里是dom节点删除和创建内容</div>
+        <ul>
+            <li v-for="item,index in list">
+                {{item}}---{{index}}
+            </li>
+        </ul>
+    </div>
+    <script>
+        //v-on:click=  简写 @click=
+        //v-shou=
+        //v-if=
+        //v-for( item,index in array)
+        const obj = {
+            data(){        //放属性
+                return {
+                    isShow:true,
+                    isExist:true,
+                    list:['aaa','bbb','ccc']
+                }
+            },
+            methods:{      //放方法
+                fn(){
+                    console.log('clicked button this:', this)   //this就相当于这个dom元素的vue代理
+                    this.isShow = !this.isShow
+                    this.isExist = !this.isExist
+                }
+            }
+        }
+        //app就是#box这个dom元素的proxy 
+        Vue.createApp(obj).mount("#box")
+    </script>
+</body>
+</html>

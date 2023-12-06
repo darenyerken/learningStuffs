@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //await
+        // - 相当于generator的yield，异步等待结果成功再放行，失败则不通行并立即返回
+        // - 只能在async函数中使用 
+
+        // async
+        // - 当无返回值时返回函数中的promise对象
+        // - 有返回值时候，无论返回值是不是promise都会返回停止执行
+        // - 当第一个peomise被rejected就立即返回
+
+        function ajax( data) {
+            console.log('ajax running')
+            return pro1 = new Promise((resolve, reject) => {
+                setTimeout(function() {
+                    resolve(data + ' 成功获取 ')  //返回fulfilled
+                    reject(data)  //返回rejected 
+                },3000)
+            })
+        }
+
+        async function fn() {
+            let res = await ajax( 'data-1')
+            console.log(res)
+            let res2 = await ajax( res)
+            console.log(res2)
+
+        }
+        // console.log('同步代码1')
+        fn().then(res=>{
+            console.log('then')
+        }).catch(res=>{
+            console.log('catch')
+        })
+        // console.log('同步代码2')
+        // console.log(res)
+    </script>
+</body>
+</html>

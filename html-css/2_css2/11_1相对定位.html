@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .outer {
+            width: 220px;
+            background-color: #ccc;
+        }
+        .box {
+            width: 100px;
+            height: 100px;
+        }
+        /* 后写的盖住先写的 */
+        .box1 {
+            background-color: orange;
+            position: relative;
+            top: 30px;
+        }
+        .box2 {
+            background-color: skyblue;
+            position: relative;
+            top: 15px;
+        }
+        .box3 {
+            background-color: greenyellow;
+            position: relative;
+            top: -10px;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="outer">
+        <div class="box box1">1</div>
+        <div class="box box2">2</div>
+        <div class="box box3">3</div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+    <style>
+        html {
+            background-color: #aaa;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- v-model可以实时获取每个表单项的value值 -->
+    <!-- 有三个修饰符号: -->
+    <!-- .lazy 不实时更新v-model指向的状态，只在失去焦点后更新 -->
+    <!-- .number  自动将输入的值转换为数字（input一般是string值，type为number也是） -->
+    <!-- .trim  消去前后空格 -->
+    <div id="box">
+        <h2>input输入</h2>
+        <input type="text" v-model="myInput">{{myInput}}
+        <h2>多选框</h2>
+        <div>兴趣爱好:{{hobList}}</div>
+        <input type="checkbox" value="篮球" v-model="hobList">篮球
+        <input type="checkbox" value="足球" v-model="hobList">足球
+        <input type="checkbox" value="乒乓球" v-model="hobList">乒乓球
+        <h2>单选框</h2>
+        性别:{{selected}}
+        <input type="radio" value="男" v-model="selected">男
+        <input type="radio" value="女" v-model="selected">女
+        <h2>下拉框</h2>
+        <div>购物车列表</div>
+        <select v-model="goodStatus">
+            <option value="all">全部订单</option>
+            <option :value="0">已付款</option>
+            <option :value="1">已取消</option>
+            <option :value="2">未付款</option>
+            <option :value="3">已完成</option>
+        </select>
+        <ul>
+            <template v-for="{title,status} of shopList">
+                <li v-if="status === goodStatus">
+                    商品名：{{title}} 
+                </li>
+                <li v-if="goodStatus === 'all'">
+                    商品名：{{title}}
+                </li>
+            </template>
+        </ul>
+    </div>
+
+    <script>
+        const obj = {
+            data() {
+                return {
+                    myInput:'',
+                    hobList:[],
+                    selected:'',
+                    goodStatus:'all',
+                    shopList:[
+                        {
+                            title:'华为手机',
+                            status:0,
+                            id:111
+                        },
+                        {
+                            title:'耐克上衣',
+                            status:3,
+                            id:222
+                        },
+                        {
+                            title:'零食包',
+                            status:2,
+                            id:333
+                        },
+                        {
+                            title:'阿迪达斯上衣',
+                            status:2,
+                            id:444
+                        },
+                        {
+                            title:'casio手表',
+                            status:1,
+                            id:555
+                        },
+                        {
+                            title:'u盘',
+                            status:1,
+                            id:666
+                        },
+                    ]
+                }
+            },
+            methods:{
+
+            }
+        }
+        const app = Vue.createApp(obj).mount('#box')
+    </script>
+</body>
+
+</html

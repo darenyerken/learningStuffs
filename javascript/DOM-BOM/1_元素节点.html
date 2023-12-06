@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">点我一下</button>
+    <div class="d1"></div>
+    <div class="d1"></div>
+    <div class="d1"></div>
+    <div class="d1"></div>
+    <div class="d1"></div>
+
+    <div class="d2">
+        我是d2
+        <span>我是span</span>
+        <ul>
+            <li>li1</li>
+            <li>li2</li>
+        </ul>
+    </div>
+    <script>
+        //document的原型链:  ->HTMLElement -> Document -> Node -> EventTarget ->Object.prototype
+        // console.log(document.documentElement)  //html
+        // console.log(document.body)
+        // console.log(document.images)  //网页中的所有图片，以一个实时更新的类数组集合返回
+        // console.log(document.links)  //网页中的所有超链接，以一个实时更新的类数组集合返回
+
+        //元素节点对象
+        // 网页中的每页个标签都是一个元素节点
+        // 通过document来获取、创建元素节点对象
+        let result
+        result = document.getElementById('btn')  //通过id来获取 一个 元素对象
+        result = document.getElementsByClassName('d1')  //通过类名来获取 一组 元素对象  ；实时更新；返回类数组
+        result = document.getElementsByTagName('button') // //通过元素名来获取 一组 元素对象  ；实时更新；返回类数组
+        result = document.querySelector('.d1')  // 通过css选择器获取 一个 元素对象
+        result = document.querySelectorAll('.d1')  // 通过css选择器获取一组元素对象 ; 不实时更新
+
+        //div的原型链  HTMLDivElement -> HTMLElement -> Element -> Node -> EventTarget -> Object.prototype
+        let div = document.querySelector('.d2')
+        result = div.firstChild  //获取第一个孩子  还有last...
+        result = div.firstElementChild  //获取第一个html元素  还有last...
+        result = div.childNodes  //包括文本（文字、空格、换行符都算一个节点）
+        result = div.children  //只获取html元素
+        result = div.nextElementSibling  //获取下一个兄弟元素
+        result = div.previousElementSibling  //获取前一个兄弟元素
+        result = div.parentElement  //获取当前元素的父元素
+        console.log(result)  
+
+    </script>
+</body>
+</html>

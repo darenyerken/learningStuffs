@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-image: url(bg3.jpg); background-size: cover;">
+    <script>
+        //选择排序
+
+        function swap( arr, a, b) {
+            let temp = arr[a]
+            arr[a] = arr[b]
+            arr[b] = temp
+        }
+
+        function selectionSort( arr) {
+            let indexMin
+            for( let i = 0; i < arr.length-1; i++) {
+                indexMin = i
+                for( let j = i+1;j < arr.length; j++) {
+                    if( arr[j] < arr[indexMin]) {    // <-----------选择排序特点
+                        indexMin = j
+                    }
+                }
+                swap( arr, indexMin, i)
+            }
+            if(indexMin)return arr
+        }
+
+        let arr = [5,2,3,4,1,123,54,1234,7,34,1,0,8888,-232,123,0,-234534]
+        console.log(selectionSort(arr))
+    </script>
+</body>
+</html>

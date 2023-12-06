@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 函数创建的三种方式
+        // function fn() {        //此种方式创建的函数是可以用window.fn()来调用
+            // return '我是函数1'
+        // }
+        // let fn2 = function(){
+            // return '我是函数2'
+        // }
+        // let fn3 = ()=> '我是函数3'
+
+        //函数传递的实参少于形时候，未传递的形参为undefine   实参多雨形参时候，忽略多余实参         函数的形参相当于在函数内部var声明一个变量
+        //函数的参数和返回值可以是任何类型
+
+        //箭头函数只有一个参数时候可以省略括号
+        // let fn4 = a=> console.log('我是fn4')
+        // fn4()
+
+        //箭头函数的返回值可以直接写在箭头后面
+        //  -这时当返回值是对象，用括号括起来
+        // let fn5 = (a,b)=> a+b
+        // // console.log(fn5(2,3))
+        // let fn6 = ()=>({name:'Ronaldo'})
+        // console.log(fn6())
+
+        // let a = 1
+        // function fnn() {
+        //     a = 3
+        //     console.log(a)
+        // }
+        // a = 2
+        // fnn()
+
+
+        
+    </script>
+</body>
+</html>

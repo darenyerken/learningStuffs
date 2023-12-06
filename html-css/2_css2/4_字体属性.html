@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <!--font-size  尽量给每个字体都给都设定字体大小，可以直接给body设置字体大小 -->
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        body {
+            font-size: 25px;
+        }
+        .font1 {
+            /* 非衬线字体，常用 */
+            font-family: "Microsoft YaHei",sans-serif;
+            font-style: normal;
+            font-weight: lighter;
+        }
+        .font2 {
+            /* 衬线字体，不常用 */
+            font-family: "宋体",serif;
+            /* 使用字体自带斜体效果 （推荐）*/
+            font-style: italic;
+            font-weight: normal;
+
+        }
+        .font3 {
+            font-family: "翩翩体-简","楷体";
+            /* 强制斜体 */
+            font-style: oblique;
+            /* 粗体 */
+            font-weight: bold;
+        }
+        /* 复合写法 ：字体大小必须写倒数第二位，字体族必须写倒数第一，其他写前面 */
+        .font4 {
+            font:bold italic 15px "楷体",serif;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="title">春晓</h1>
+    <p class="font1">春眠不觉晓，</p>
+    <p class="font2">处处闻啼鸟。</p>
+    <p class="font3">夜来风雨声，</p>
+    <p class="font4">花落知多少。</p>
+</body>
+</html>

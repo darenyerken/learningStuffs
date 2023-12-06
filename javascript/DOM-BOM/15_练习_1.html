@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .outer {
+            width: fit-content;
+            margin: 50px auto;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="outer">
+        <div class="img-wrapper">
+            <img src="images/1.png" alt="图片">
+        </div>
+        <button id="pre">上一张</button>
+        <button id="auto">自动</button>
+        <button id="next">下一张</button>
+        <script>
+            const pre = document.getElementById('pre')
+            const next = document.getElementById('next')
+            const img = document.querySelector('img')
+            let i = 0
+            let timer
+            next.addEventListener('click', function(){
+                clearInterval(timer)
+                i++
+                img.setAttribute('src', `images/${Math.abs(5+i%5)%5+1}.png`)
+            })
+            pre.addEventListener('click', function(){
+                clearInterval(timer)
+                i--
+                img.setAttribute('src', `images/${Math.abs(5+i%5)%5+1}.png`)
+            })
+            const auto = document.querySelector('#auto')
+            auto.addEventListener('click', function() {
+                clearInterval(timer)
+                timer = setInterval(function() {
+                    i++
+                    img.setAttribute('src', `images/${Math.abs(5+i%5)%5+1}.png`)
+                },2000)
+            })
+        </script>
+    </div>
+</body>
+</html>

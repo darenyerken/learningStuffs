@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    //数组
+    // - js同一个数组可以存任何不同类型数据
+    // - 读取索引超过数组长度返回undefined
+    // - arr[a]  a不可以是负值
+    let arr = new Array()
+    arr = [0,'孙悟空',(a,b) => {a+b},{name:'孙悟空'},[1,2,3]]  
+    // console.log(arr.includes('孙悟空'))
+
+    //数组的操作
+    // - arr.push('a')   往数组后面加入一个元素,返回新数组的长度
+    // - arr.pop()   从数组末尾弹出一个元素，返回弹出的元素
+    // - arr.unshift('a')   往数组首位加入一个元素，返回新数组的长度
+    // - arr.shift()   从数组首位弹出一个元素，返回弹出的元素
+    // - arr.length   返回数组的长(元素个数)
+    // - arr.splice(a,b , c, d , ......)    从数组索引位置开始删除元素，删除b个，并替换为 c、d 、......
+    // - ...arr     展开数组中的所有元素  相当于 arr[0],arr[1],arr[3],...
+    // - for(let k of arr)   从头到尾的顺序遍历数组，每次都将元素赋值给k（对于基本数据类型，改变k不会改变数组的元素）    Ps: for-of 语句可以遍历任何可以迭代的数据 例如for(let k of 'abcdef') ； 遍历对象用for-in
+    // - arr = arr1.concat(arr2,arr3) 拼接arr1，arr2，arr3并且不破坏他们，返回拼接后的数组
+    // - Arry.isArry(arr)  判断arr是否是数组
+    // - arr.at(a) 返回数组arr中索引为a的元素，a == -1 相当于数组最末尾
+    // - arr.reverse 翻转arr（改变原数组
+    // - arr.indexOf(a,b) 从数组索引位置b开始往后寻找值为a的元素，未找到返 -1     索引可以负值
+    // - arr.lastIndexOf( a, b) 从数组索引位置b开始往前寻找。。。      索引可以负值
+    // - arr.join(a)  将数组中的元素串联成一个字符串，a作为连接符号，不给参数会以逗号隔开元素
+    // - arr.slice(a,b) 从a位置（包括该元素）开始截取元素到b（不包括该位置）不给参数b会从a截取到最后，a、b都不给会截取全部元素并返回(浅拷贝)   （不破坏原来的数组）  a、b可以是负值
+    // - arr.find(item => item > 10)
+
+
+    // - arr.sort(( a, b) => a - b)  对数组进行排序， a - b 是升序 ; b - a 是降序 ;不传参是按照unicode编码进行排序   改变原数组
+    // arr = ['d','b', 'c', 'a','g', 'f', 'bag', 'each', 'dog', 'boh', 'e']
+    // arr.sort()
+    // console.log(arr)
+
+    // - arr.reduce((a,b) = > a+b)  对数组进行整合，a是第一个元素，b是第二个元素，对a、b进行操作并赋值给a，将第三个元素赋值给b，再对a、b进行操作以此类推并返回最后的结果
+    // arr = [1,2,3,4,5,6,7,8]
+    // let sum = arr.reduce((a,b) => a+b)
+    // console.log(arr,sum)
+
+    // - arr.forEach((element,index,array) => {操作语句})  遍历数组,无法改变原数组,无返回值
+    // arr = [1,6,3,4,5,2,7,8]
+    // const map = new Map()
+    // let result = arr.forEach((elem,index) => {map.set(elem,index)} )
+    // console.log([...map.keys()].sort((a,b)=>b-a))
+
+    // - arr.filter( (element, index, array) => {操作语句 ； return 判断})  遍历并筛选元素   不破坏原数组 产生新数组  注意回调函数的返回值是判断语句
+    // arr = [1,2,3,4,5,6,7,8]
+    // const arr2 = arr.filter( (ele) => { return ele % 2 === 0})
+    // console.log(arr2)
+
+    // - arr.map( (element, index, array) => {操作语句； return 要传递给新数组的内容})  遍历数组中的元素对其进行操作并将操作后的元素一个一个传到新的数组中   不改变原数组
+    // arr = [1,2,3,4,5,6,7,8]
+    // let arr2 = arr.map( ele => { return ele + 1})
+    // console.log(arr, "+1 =>", arr2)
+
+    //冒泡排序 - 两个两个比较数组中的元素。。。
+    //选择排序 - 一个元素从头到尾比较一遍。。。
+
+    //浅拷贝：创建一个新的数组，只拷贝第一层。例如当一个对象中有数组的时候，只会将这个数组的引用地址拷贝过去
+    // - const arr2 = arr.slice()
+    // - const arr2 = arr.map()
+    // - 遍历数组并赋值
+    //深拷贝：创建一个新数组，深层拷贝。例如当一个对象中有数组的时候，会将这个数组也完全拷贝过去，当通过被拷贝对象改变数组元素时候，不会改变原来对象中的数组
+    // - arr.structuredClone(arr2)
+    </script>
+</body>
+</html>

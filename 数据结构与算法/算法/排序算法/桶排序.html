@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-image: url(bg3.jpg); background-size: cover;">
+    <script>
+        // 桶排序算法
+        // - 将数组分成几个桶，前一个桶中的每一个数都比后一个桶小
+        // - 再对每个小桶内的元素排序(元素少的情况下插入排序最合适)并把他们按顺序拼接到一起
+
+        //主函数
+        function bucketSort( arr, bucketSize) {
+            if(arr.length>bucketSize) {
+                const buckets = createBuckets( arr, bucketSize)
+                console.log('在调用sortbucket前，clog以上数据后设置5秒延迟')
+                let date = new Date()
+                let timeOut = date.getTime() + 5000
+                while(date.getTime() < timeOut){
+                    date = new Date()
+                }
+                return sortBuckets( buckets)
+            } else {return arr}
+        }
+        //分桶函数
+        function createBuckets( arr, bucketSize) {
+            let minValue = arr[0];
+            let maxValue = arr[0];
+            for (let i = 1; i < arr.length; i++) { 
+                if (arr[i] < minValue) {
+                    minValue = arr[i];
+                } else if (arr[i] > maxValue) {
+                    maxValue = arr[i];
+                }
+            }
+            const bucketCount = Math.ceil( (maxValue-minValue+1)/bucketSize)  //<--桶排序特点
+            const buckets = []
+            for( let i = 0; i < bucketCount; i++) {
+                buckets[i] = []
+            }
+            for( let i = 0; i < arr.length; i++) {
+                let index = Math.floor((arr[i] - minValue)/bucketSize)  //<---核心算法
+                buckets[index].push(arr[i])
+            }
+            let a = buckets[0]
+            console.log('直接传' ,buckets)
+            console.log('传序列化：' , JSON.stringify(buckets))
+            console.log('传序列化再parse', JSON.parse(JSON.stringify(buckets)))
+            console.log('传buckets其中一个数组' ,a)  //<-----不知为何buckets内部已排序好了,可能console.log不同步
+            return buckets        //可能一：console.log是同步的，但是因为我们传的实参是引用类型，buckets在处理完成之前无法打印
+        }                        //可能二：clog是浅拷贝并打印
+        //MDN解释：
+        //这样可以确保你所看到的 obj 的值是当前输出的值
+        //否则，大多数浏览器会提供一个随着值的变化而不断更新的实时视图
+        //这可能不是你想要的。
+        //结果：clog是浅拷贝并打印
+        
+        //桶内排序并拼接函数
+        function sortBuckets( buckets) {
+            const result = []
+            buckets.forEach(element => {
+                insertSort( element)
+                result.push(...element)
+            });
+            return result
+        }
+
+        //插入排序
+        function swap( arr, a, b) {
+            let temp = arr[a]
+            arr[a] = arr[b]
+            arr[b] = temp
+        }
+
+        function insertSort( arr) {
+            let indexTemp
+            for( let i = 1; i < arr.length; i++) {
+                indexTemp = i
+                for( let j = i-1;j >= 0; j--) {
+                    if( arr[indexTemp] < arr[j]) {    
+                        swap(arr, j, indexTemp)
+                        indexTemp = j    
+                    } else break   // <-----------插入排序特点,因为i所及的地方都排序好了
+                }
+            }
+        }
+
+        let arr = [10,5,3,2,7,4,0,1,9,8,6,2,21,22,4,7,3,5,12,15,17,11,19]
+        let result = bucketSort(arr,3)
+        console.log( '最后打印结果 ',result)
+    </script>
+</body>
+</html>

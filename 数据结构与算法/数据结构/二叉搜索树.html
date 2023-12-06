@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-image: url(bg3.jpg); background-size: cover;">
+    <script>
+        //二叉搜索树
+        // - 有时树的左右两边不平衡，一边过深，可以改进
+        class Node {
+            constructor(key) {
+                this.key = key
+                this.left = null
+                this.right = null
+            }
+        }
+        const Compare = {
+            less:-1,
+            bigger:1,
+            equals:0
+        }
+
+        class BinarySearchTree {
+            root = null
+
+            //比大小   2和'2'无法对比,但是如果两个键不大不小相当于 相等  因为Compare.equals没用过
+            compare(a, b) {
+                if (a === b) {    
+                    return Compare.equals;
+                }
+                return a > b ? Compare.bigger : Compare.less;
+            }
+
+            //插入
+            insert( key) {
+                if( this.root === null) {
+                    this.root = new Node( key)
+                    return true
+                } else {
+                    return this.insertNode( this.root, key)
+                }
+            }
+            insertNode( node, key) {
+                if( this.compare( key, node.key) === Compare.less) {
+                    if(node.left == null) {
+                        node.left = new Node( key)
+                        return true
+                    } else {
+                        return this.insertNode( node.left, key)
+                    }
+                } else if(this.compare( key, node.key) === Compare.bigger) {
+                    if(node.right == null) {
+                        node.right = new Node( key)
+                        return true
+                    } else {
+                        return this.insertNode( node.right, key)
+                    }
+                } else {
+                    false
+                }
+            }
+            //中序遍历
+            inOrderMap() {
+                if( this.root === null) return null
+                else this.inOrderMapNode( this.root)
+            }
+            inOrderMapNode( node) {
+                if( node == null) return
+                this.inOrderMapNode( node.left)
+                console.log( node.key)
+                this.inOrderMapNode( node.right)
+            }
+            //先序遍历
+            preOrderMap() {
+                if( this.root === null) return
+                else this.preOrderMapNode( this.root)
+            }
+            preOrderMapNode( node) {
+                if( node == null) return
+                console.log( node.key)
+                this.preOrderMapNode( node.left)
+                this.preOrderMapNode( node.right)
+            }
+            //后序遍历
+            postOrderMap() {
+                if( this.root === null) return null
+                else this.postOrderMapNode( this.root)
+            }
+            postOrderMapNode( node) {
+                if( node == null) return
+                this.postOrderMapNode( node.left)
+                this.postOrderMapNode( node.right)
+                console.log( node.key)
+            }
+            //查询
+            search( key) {
+                return this.searchNode( this.root, key)
+            }
+            searchNode( node, key) {
+                if( node == null) {
+                    return false;
+                }    
+                if( this.compare( key, node.key) === Compare.less) {
+                    return this.searchNode( node.left, key);
+                } else if( this.compare( key, node.key) === Compare.bigger) {
+                    return this.searchNode( node.right, key);
+                } else {
+                    return true;
+                }
+            }
+            //最大值
+            max() {
+                return this.maxNode( this.root).key
+            }
+            maxNode( node) {
+                if( node.right == null) {
+                    return node
+                } else {
+                    return this.maxNode( node.right)
+                }
+            }
+            //最小值
+            min() {
+                return this.minNode( this.root).key
+            }
+            minNode( node) {
+                if( node.left == null) {
+                    return node
+                } else {
+                    return this.minNode( node.left)
+                }
+            }
+            //移除
+            remove( key) {
+                this.root = this.removeNode( this.root, key)
+            }
+            removeNode( node, key) {
+                if( this.compare( key, node.key) === Compare.less) {
+                    node.left = this.removeNode( node.left, key)
+                    return node
+                } else if( this.compare( key, node.key) === Compare.bigger) {
+                    node.right = this.removeNode( node.right, key)
+                    return node
+                } else {
+                    if( node.left == null && node.right == null) {  //发现一个小bug  这个if中如果node.left == node.right == null 时候if不成立
+                        node = null                                 //即三个null不相等 
+                        return node
+                    }
+                    if( node.left == null) {
+                        node = node.left
+                        return node
+                    } if( node.right == null) {
+                        node = node.right
+                        return node
+                    }
+                    
+                    const RightMinNode = this.minNode( node.right)
+                    node.key = RightMinNode.key
+                    node.right = this.removeNode( node.right, RightMinNode.key)
+                    return node
+                }
+
+            }
+        }
+        const bst = new BinarySearchTree()
+        bst.insert(100)
+        bst.insert(80)
+        bst.insert(70)
+        bst.insert(90)
+        bst.insert(110)
+        console.log(bst)
+    </script>
+</body>
+</html>

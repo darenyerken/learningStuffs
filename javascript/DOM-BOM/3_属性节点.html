@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="" target="_blank">
+        <input type="text"  name="名字" value="孙悟空">
+        <button type="submit"></button>
+    </form>
+    
+    <script>
+        //属性节点，元素的属性可以直接通过元素操作
+        // - 有些判断属性传值就是true  例如disabled
+        const input = document.querySelector('input')
+        input.value = '猪八戒'   //与setAttribute同时出现时，form提交这个
+        input.disabled = 'false'
+
+        //方式二
+        input.setAttribute('value','唐曾')  //设置属性
+        input.getAttribute('name')  //获取属性
+        input.removeAttribute('disabled')
+    </script>
+</body>
+</html>

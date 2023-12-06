@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="javascript:;">
+        <input type="text" name="123">
+        <button class="btn">按钮</button>
+    </form>
+    <script>
+        //BOM  Browser Onject Model
+        //   BOM的对象以window的属性存在window中
+        // - window  窗口对象
+        // - navigator   浏览器对象
+        // - location    地址栏对象
+        // - history    历史浏览页面对象
+
+        
+        const btn = document.querySelector('.btn')
+        btn.addEventListener('click', function( event) {
+            //navigater
+            // console.log(navigator.userAgent)  // 返回浏览器描述
+
+            //location
+            // location.assign('https://www.baidu.com')  //通过给地址栏赋值来跳转页面
+            // console.log(location.href)  //返回地址  还有location.port等
+            // location.reload(true)  //刷新页面  传递 true 参数可以无缓存刷新
+            // location.replace('https://www.baidu.com')  //替换地址并跳转页面  ！！！（无法回退
+
+            //history
+            history.back()  //回退上一级
+            history.go()  //前进一级
+            history.go(1)  //   -2 返回上两级  -1 返回上一级   1 前进一级
+        })   
+    </script>
+</body>
+</html>

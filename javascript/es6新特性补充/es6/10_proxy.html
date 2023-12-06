@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box"></div>
+    <script>
+        //没有proxy的时候写页面响应式代码
+        // - 局限性：1.只能操作对象 2.只能操作对象的一个属性
+        // const obj = {
+        //     name:'aaa'
+        // }
+        // Object.defineProperty( obj, 'data', {
+        //     set( value) {
+        //         box.innerHTML = value
+        //     },
+        //     get() {
+        //         return box.innerHTML
+        //     }
+        // })
+        // obj.data = 'asddfg'
+        // console.log(obj)
+        // console.log(obj.data)
+
+        //proxy  代理器
+        // - 拦截对该对象的操作并处理  比如给该对象添加一个属性
+        // - 监控对象不再是对象的属性而是整个对象
+        // - 可以监控数组、map等其他数据类型
+
+        // - 特点： 操作原对象会操作proxy，但不走proxy的get、set方法
+        //         操作proxy也会改变原对象，走proxy的get、set方法 
+        // const obj = {name:'aaa'}
+        // const objProxy = new Proxy( obj,{
+        //     get( target, key) {  //target是obj  key指属性名
+        //         console.log('get')
+        //         return target[key]   //用[]表示属性
+        //     },
+        //     set( target, key, value) {
+        //         target[key] = value
+        //     }
+        // })
+        // obj.data = '111'
+        // objProxy.data = '222'
+        // console.log(obj)
+        // console.log(obj.data)
+        // console.log(objProxy)
+        // console.log(objProxy.data)
+
+        // 代理Map
+        const set = new Set()
+        const setProxy = new Proxy( set,{
+            get( target, key) {
+                let a = target[key]
+                if( a instanceof Function) {
+                    console.log('proxy is doing')
+                    return a.bind(target)    //这里只能用bind,因为bind不会让函数立即执行
+                }
+                return target[key]
+            },
+            set( target, key, value) {
+                console.log('set')
+            }
+        })
+        set.add(123)
+        console.log(set)
+        setProxy.add(456)
+        console.log(set)
+    </script>
+</body>
+</html>

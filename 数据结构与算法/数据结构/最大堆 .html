@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <body style="background-image: url(bg3.jpg); background-size: cover;">
+<body>
+    <script>
+        //最大堆
+        // - 完全二叉树
+        // - 每一个节点的子节点小于等于它本身
+        // - 最顶层一定是值最大的节点
+        // - 用数组管理
+        const Compare = {
+            less: -1,
+            bigger: 1,
+            equ: 0
+        }
+        class MaxHeap {
+            heap = []
+
+            compare(a, b) {
+                if (a === b) {    
+                    return Compare.equals;
+                }
+                return a > b ? Compare.bigger : Compare.less;
+            }
+
+            getParentIndex( index) {
+                return Math.floor( (index-1)/2)
+            }
+            swap( a, b) {
+                let temp = this.heap[a]
+                this.heap[a] = this.heap[b]
+                this.heap[b] = temp
+            }
+            shiftUp( index) {
+                let parentIndex = this.getParentIndex( index)
+                if( index>0 &&
+                    this.compare( this.heap[ index],this.heap[ parentIndex]) === Compare.bigger
+                ){
+                    this.swap( index, parentIndex)
+                    this.shiftUp( parentIndex)
+                }
+            }
+            size() {
+                return this.heap.length
+            }
+            isEmpty() {
+                return this.size() === 0
+            }
+            insert( value) {
+                if( value != null) {
+                    this.heap.push(value)
+                    this.shiftUp( this.size() - 1)
+                } else {
+                    return false
+                }
+            }
+
+            finMinimum() {
+                return this.heap[0]
+            }
+
+            getLeftIndex( index) {
+                return (index * 2 + 1)
+            }
+            getRightIndex( index) {
+                return (index * 2 + 2)
+            }
+            shiftDown( index) {
+                let current = index
+                let left = this.getLeftIndex( index)
+                let right = this.getRightIndex( index)
+                if( left<this.size() &&
+                    this.compare( this.heap[left], this.heap[current]) === Compare.bigger
+                ) {
+                    current = left
+                }
+                if( right<this.size() &&
+                    this.compare( this.heap[right], this.heap[current]) === Compare.bigger
+                ) {
+                    current = right
+                }
+                if( current !== index) {
+                    this.swap( current, index)
+                    this.shiftDown( current)
+                }
+            }
+            extract() {
+                if( this.isEmpty()) {
+                    return undefined
+                }else if( this.size() === 1) {
+                    return this.heap.shift()
+                } else {
+                    let temp = this.heap[0]
+                    this.heap[0] = this.heap.pop()
+                    this.shiftDown( 0)
+                    return temp
+                }
+            }
+            findTarget() {
+                return this.heap[0]
+            }
+        }
+        const a = new MaxHeap()
+        a.insert(5)
+        a.insert(4)
+        a.insert(2)
+        a.insert(10)
+        a.insert(3)
+        a.insert(1)
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .div1 {
+            font-family: "楷体";
+            font-size: 20px;
+            color: rgb(28, 1, 1);
+            background-color: none;
+            letter-spacing: 3px; /*字符间距（一个汉字算一个字符）*/
+            word-spacing: 100px;/*英文单词间距（空格识别）*/
+            text-indent: 40px;
+            text-align: left;
+            line-height: 1.5; /*line-height是font-size的1.5倍*/
+        }
+        #span1 {
+            text-decoration: underline red wavy;
+        }
+        .div2 {
+            /*单行文字height == line-height时，可以让文字大概垂直居中*/
+            font-size: 20px;
+            height:100px;
+            line-height: 100px;
+        }
+        .div3 {
+            font-size: 30px;
+            height: 300px;
+            background-color: orange;
+        }
+        .div3>#span {
+            font-size: 100px;
+            vertical-align: baseline;
+        }
+    </style>
+</head>
+<body>
+    <div class="div1">Winning that ticket Rose,was the best thing ever happened to me. 那时颓废还没有变成一种时尚，文化界刚结束一场热闹的人文精神的争论，<span id="span1">主要是在面对越来越物质化的现代社会</span>，当原有的思想精神支柱不断的崩溃时，人们开始对于明天和自身的茫然和困惑。那时候，学者们认真而激烈的讨论，而街边的孩子们却瞪着茫然的眼睛，观望着大街上的人群和车流，无动于衷的走过十字路口，溶入人群。</div>
+    <div class="div2">文字垂直居中：主要是在面对越来越物质化的现代社会</div>
+    <div class="div3">
+        Winnign that ticket Rosex<span id="span">xxxxxxxxxxxxxxx</span>
+    </div>
+</body>
+</html>

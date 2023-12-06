@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // promise对象
+        // pending fulfilled rejected三种状态
+        // - then是异步的，等待队列优先级在定时器之前
+        // - promise对象遇到reject之前同步执行
+        //     then和catch就相当于分流器函数，判定promise的对象并在resolve和reject调用时候执行
+        // - 主要解决回调地狱问题
+        // const pro1 = new Promise((resolve, reject) => {
+        //     console.log('pro1')
+        //     setTimeout(function() {
+        //         reject('pro1失败了')  //返回fulfilled
+        //         resolve('pro1成功了')  //返回rejected
+        //     },1000)
+        // })
+        // const pro2 = new Promise((resolve, reject) => {
+        //     console.log('pro2')
+        //     let i = false
+        //     setTimeout(function() {
+        //         resolve('pro2成功了')
+        //         reject('pro2 failed')
+        //     },3000)
+        // })
+
+        // pro1.then((res)=>{
+        //     console.log(res)
+        //     return pro2
+        // },(res)=>{
+        //     console.log('in then: ',res)
+        //     return pro2
+        // }).then((res)=>{
+        //     console.log(res)
+        // }).catch((res)=>{
+        //     console.log('in catch: ' + res)
+        // })
+
+        // Promise.all([pro1,pro2]).then((res)=>{  //所有的返回fulfulled才执行then
+        //     console.log('in Promise.all: ',res)    //只要有一个rejected就执行catch或者第二参数列表的函数 
+        // },(res)=>{
+        //     console.log('in Promise.all: ',res)
+        // })
+
+        // Promise.race([pro1,pro2]).then((res)=>{  //看哪个先返回结果
+        //     console.log(res)
+        // }).catch((res)=>{
+        //     console.log(res)
+        // })
+
+        //-----------promise是异步的
+        const pro1 = new Promise((resolve, reject) => {
+            console.log('pro1执行了')
+            resolve('pro1成功了')  //返回rejected
+            reject('pro1失败了')  //返回fulfilled
+        })
+
+        pro1.then(res=>{
+            console.log(res)
+        })
+        console.log('同步代码')
+        setTimeout(()=>{
+            console.log('立即执行的定时代码 ')
+        },0)
+    </script>
+</body>
+</html>

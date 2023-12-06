@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-image: url(bg3.jpg); background-size: cover;">
+    <script>
+        // 贪心算法
+        // - 将问题分成若干步骤，每一步都选择当前最优解
+
+        function greedy(wights, values,load) {
+            const performanceSorted = []
+            for( let i = 0; i < wights.length; i++) {
+                performanceSorted.push({
+                    weight:wights[i],
+                    value:values[i],
+                    performance:Math.floor(values[i]/wights[i]*100)/100
+                })
+            }
+            performanceSorted.sort( (a,b)=>b.performance-a.performance)
+
+            let currentLoad = load
+            let totalValue = 0
+            const bag = []
+            for( let i = 0; i < performanceSorted.length; i++) {
+                if( currentLoad >= performanceSorted[i].weight) {
+                    bag.push({
+                        weight:performanceSorted[i].weight,
+                        value:performanceSorted[i].value,
+                        performance: performanceSorted[i].performance,
+                        percent:1
+                    })
+                    currentLoad -= performanceSorted[i].weight
+                    totalValue += performanceSorted[i].value
+                } else {
+                    bag.push({
+                        weight:performanceSorted[i].weight,
+                        value:performanceSorted[i].value,
+                        performance: performanceSorted[i].performance,
+                        percent: Math.floor((currentLoad/(performanceSorted[i].weight))*100)/100
+                    })
+                    totalValue += (performanceSorted[i].value * bag[i].percent)
+                    bag.push({totalValue:totalValue})
+                    break
+                }
+            }
+            console.log(totalValue)
+            return bag
+        }
+
+        weights = [2,2,6,5,4]
+        values = [6,3,5,4,6]
+        load = 10
+        let result = greedy( weights,values, load)
+        console.log(result)
+    </script>
+</body>
+</html>

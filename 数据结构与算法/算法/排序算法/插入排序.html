@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-image: url(bg3.jpg); background-size: cover;">
+    <script>
+        //插入排序
+        function swap( arr, a, b) {
+            let temp = arr[a]
+            arr[a] = arr[b]
+            arr[b] = temp
+        }
+
+        function insertSort( arr) {
+            let indexTemp
+            for( let i = 1; i < arr.length; i++) {
+                indexTemp = i
+                for( let j = i-1;j >= 0; j--) {
+                    if( arr[indexTemp] < arr[j]) {    
+                        swap(arr, j, indexTemp)
+                        indexTemp = j    
+                    } else break   // <-----------插入排序特点,因为i所及的地方都排序好了
+                }
+            }
+        }
+
+        let arr = [5,2,3,4,1,123,54,1234,7,34,1,0]
+        insertSort(arr)
+        console.log(arr)
+    </script>
+</body>
+</html>

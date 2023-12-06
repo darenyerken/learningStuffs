@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="inp">
+    <button id="fd">防抖按钮</button>
+    <script>
+        // -----------判断类型
+        // - Object.prototype.toString.call(参数)  返回精准类型
+        // class Person{
+        //     get [Symbol.toStringTag]() {
+        //         return 'Validator';
+        //     }
+        // }
+        // let p1 = new Person()
+        // console.log(Object.prototype.toString.call(p1))
+        // console.log(typeof p1)
+        // console.log(Object.prototype.toString.call([]))
+        // console.log(typeof [])
+
+        // ----------- LHS；RHS  左查询；右查询
+        // let a = 1  //为 = 1 操作寻找目标的过程就是LHS
+        // console.log(a)  // 查找a的值的过程就是RHS
+
+
+        // ----------with语句   不推荐，可能发生内存泄漏，性能不佳,严格模式下禁止
+        // let a = 0
+        // function fn( obj) {
+        //     with( obj) {
+        //         a = 10
+        //     }
+        // }
+        // let o1 = { a:3}
+        // let o2 = { b:3}
+        // fn(o1)
+        // console.log(o1.a)
+        // fn(o2)     //这里发生了数据泄漏 : 当with中进行LHS查询时，在当前作用域中找不到》找fn作用域：找不到》找全局作用域：找不到》创建一个a并赋值为10
+        // console.log(o2.a) 
+        // console.log(a)  
+
+        // ----------函数作用域
+        // - 每个对象都有一个仅供JavaScript引擎存取的内部属性—— [[Scope]]。对于函数来说，[[Scope]]属性包含了函数被创建的作用域中对象的集合——作用域链
+        // - 函数声明时可以访问全局属性，因为函数在声明时候会创建一个作用域链并把全局作用域在首位
+        // - 当引用函数时，会创建一个函数作用域叫活动对象，提升let、var和该函数中的函数，并把此作用域添加进作用域链的首位
+        // - 当函数进行LHS或者RHS查询时，从作用域链中从头先查询本身作用域，找不到就在下一位的全局作用域中查询
+        // - with和trycatch会改变函数作用域链
+
+        // 当new一个函数时候
+        // - 1.创建一个新对象
+        // - 2.将函数的prototype设置为此对象的原型
+        // - 3.将函数中的this设置为新对象的
+        // - 4.执行函数
+        // - 4.如果函数没有返回其他对象则隐式的返回this->新创建的对象
+
+
+        // -----------------原型
+        // - prototype  函数独有，一般为空，构造函数的prototype指向它的原型对象
+        // - __proto__  所有对象都有(包括函数)  指向实例化此对象的原型对象
+
+
+        // ---------------闭包
+        // - 闭包就是有权访问另一个函数作用域的函数
+        // - 立即执行函数无法作为闭包 
+        // - 防抖中debounce中的匿名函数就是一个闭包
+
+        //-------------定时器  ---https://blog.csdn.net/andyliulin/article/details/55505723
+        // - 定时器是异步机制：定时器前后的代码不受定时器影响
+        // - 定时器中使用的this一般都会指向window  因此在定时器中执行含有this的函数时候要用apply或者call方法指定this
+        // - setTimeout(f,0)   函数f并不会立即执行，当所有代码执行完后即下一个EventLoop时才执行
+        // - 定时器最小时间范围是4ms，小于4ms则自动调整为4ms。最大是2147483647毫秒（24.8天） 因为浏览器内部使用32位带符号的整数，来储存推迟执行的时间
+        
+        // --------------------用户自定义的回调函数，通常在浏览器的默认动作之前触发
+        // - 上面代码想在用户输入文本后，立即将字符转为大写。但是实际上，它只能将上一个字符转为大写，因为浏览器此时还没接收到文本，所以this.value取不到最新输入的那个字符。
+        // - 浏览器此时还没接收到文本，所以this.value取不到最新输入的那个字符。
+        // const inp = document.querySelector('#inp')
+        // inp.addEventListener('keydown',function(){
+        //     this.value = this.value.toUpperCase()
+        // })
+        // - 用setTimeout改写，上面的代码才能发挥作用。
+        // inp.addEventListener('keydown',function(){
+        //     let a = this
+        //     setTimeout(function(){
+        //         this.value = this.value.toUpperCase()
+        //     },0)
+        // })
+
+        // ------------------JavaScript执行速度远高于DOM
+
+        //-------------防抖 debounce
+        // - 在事件被触发n秒后再执行回调函数，如果在这n秒内又被触发，则重新计时。
+        // - 例如用户在输入一个input，输入完成后3s后再发送ajax请求，3s内用户再次按键盘则重新定时
+        // const btn = document.querySelector('#fd')
+        // function debounce(fn, delay){
+        //     var timer = null; // 声明计时器
+        //     return function(){
+        //         clearTimeout(timer);
+        //         timer = setTimeout(function(){
+        //         fn();
+        //         }, delay);
+        //     };
+        // }
+
+        //自创代码：例如用户按button就立即发送请求，3s内button将无效
+        // function debounce( fn, delay) {
+        //     let i = true
+        //     let timer
+        //     return function () {
+        //         if(i === true) {
+        //             fn()
+        //             i = false
+        //             timer = setTimeout(function(){
+        //                 i = true
+        //                 setTimeout(timer,delay)
+        //             },delay)
+        //         }
+        //     }
+        // }
+
+        // function fn3() {
+        //     console.log('传数据')
+        // }
+        // btn.addEventListener('click', debounce( fn3, 3000))
+
+
+        // --------------------js底层原理---https://learnku.com/articles/38201
+    </script>
+</body>
+</html>

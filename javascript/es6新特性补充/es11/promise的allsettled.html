@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // - allsettled会等待所有的promise对象完成再返回所有结果集合到数组里
+        // - 注意其返回值res数组中的元素是promise对象而不是数据，all和race方法都是数据
+        const pro1 = new Promise((resolve, reject) => {
+            setTimeout(function() {
+                resolve('pro1成功了')  //返回rejected
+                reject('pro1失败了')  //返回fulfilled
+            },1000)
+        })
+        const pro2 = new Promise((resolve, reject) => {
+            let i = false
+            setTimeout(function() {
+                reject('pro2 failed')
+                resolve('pro2成功了')
+            },3000)
+        })
+
+        Promise.allSettled([pro1,pro2]).then(res=>{
+            console.log(res)
+            let res1 = res.filter( ele => ele.status === 'fulfilled')
+            console.log(res1)
+        })
+        // Promise.all([pro1,pro2]).then(res=>{
+        //     console.log(res)
+        //     let res1 = res.filter( ele => ele.status === 'fulfilled')
+        //     console.log(res1)
+        // })
+    </script>
+</body>
+</html>

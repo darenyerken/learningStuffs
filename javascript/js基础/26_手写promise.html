@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="module">
+        import {jackPromise} from './26_jackPromise.mjs'
+
+        const pro = new jackPromise((resolve,reject)=>{
+            setTimeout(()=>{
+                reject( 'data')
+                resolve( 'data')
+            },3000)
+        })
+
+        pro.then((res)=>{
+            console.log(res,' then')
+        },(res)=>{
+            console.log(res, 'catch')
+        })
+
+        console.log('同步代码')
+    </script>
+</body>
+</html>

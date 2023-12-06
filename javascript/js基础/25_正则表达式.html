@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //正则表达式
+        // - 用来检查字符串的格式
+        // - 正则表达式也是js中的一个对象
+        // - re.test('xxx')  检查字符串中是否有符合正则表达式的内容
+        // - re.exec('xxx')  从字符串中提取复合表达式的内容 以数组形式返回结果
+        // - re = /x/i  i表示忽略大小写
+        // - re = /x/g  g表示全局
+        // - re = /x/ig  可以这样复合着写
+        //正则表达式中的量词    注意：量词只认它前面一位 例如ab{3}表示abbb，需要（ab）{3}表示ababab
+        // - {3} 正好三次
+        // - {3，} 至少三个
+        // - {3，5} 三到五个
+        // - +  一个以上
+        // - * 任意数量包括零次
+        // - ？ 零到一次
+        let re = new RegExp('a', 'i')  //第一种创建方式：参数： '正则表达式'， '匹配模式'
+        re = /a/i  //第二种创建方式 ： /正则表达式/匹配模式
+        re = /a/
+        re = /[a-z]/  //表示匹配从a到z  （有就行）
+        re = /[a-zA-Z]/ //表示匹配a到z A到Z
+        re = /[^a-zA-z]/  //表示匹配除了a到z A到Z
+        re = /[a-zA-Z0-9_]/
+        re = /\w/  //表示匹配单词字符 [a-zA-Z0-9_]
+        re = /\W/  //除了单词字符
+        re = /\d/  //数字
+        re = /\D/   //除了数字弟弟
+        re = /\s/   //空格
+        re = /\S/   //除了空格
+        re = /^a/   //整个字符串以a开头,只认其后一个
+        re = /a$/    //以a结尾
+        re = /^abc$/   //内容只能是abc
+        
+        re = /^[a-z]/i   //匹配模式i表示忽略大小写
+        re = /^_a/
+        re = /^_[a-z]/
+        let result = re.test('_aABC')
+        console.log(result)
+
+        re = /a{3}/i  // 三个连续的a
+        re = /(ab){1,3}/g  //一到三个连续的ab
+        // re = /a([a-z])c/ig  //匹配全局（每一个）a?c  忽略大小写 并单独拎出？放到数字第二位 即result[1]中
+        let str = 'abcaecafcaccaddc'
+        result = re.exec(str)
+        console.log(result)
+
+        //从给定字符串中分离出手机号
+        //第一位是1 第二位3到9 后9位随机
+        str = 'dajsdh13715678903jasdlakdkjg13457890657djashdjka13811678908sdadadasd'
+        re = /1[3-9][0-9]{9}/g
+        while(1){
+            let a = re.exec(str)
+            if(a == null) break
+            console.log(a[0].replace(a[0].slice(2,7),'*****'))  
+        }
+        console.log('-----------------更安全的方式')
+        re2 = /(1[3-9]\d)\d{4}(\d{4})/g
+        while(1){
+            let a = re2.exec(str)
+            if(a == null) break
+            console.log(a[1]+'****'+a[2])  
+        }
+    </script>
+</body>
+</html>

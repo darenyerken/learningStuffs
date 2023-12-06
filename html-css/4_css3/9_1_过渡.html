@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .outer {
+            width: 300px;
+            height: 300px;
+            border: solid 3px black;
+            margin: 0 auto;
+            margin-top: 230px;
+            background-image: url(../图片/img2.jpg);
+            background-size: 270px;
+            background-repeat: no-repeat;
+            background-position: 0 50px;
+            border-radius: 10px;
+
+            transform-style: preserve-3d;
+            perspective: 800px;
+        }
+        .door {
+            width: 300px;
+            height: 300px;
+            background-color: orange;
+            text-align: center;
+            line-height: 300px;
+            border-radius: 7px;
+
+            transform-origin: left;
+            transform: rotateY(0deg);
+            backface-visibility: visible;
+
+            /* transition-property: transform;
+            transition-duration: 2s;
+            transition-delay: 1s;
+            transition-timing-function: cubic-bezier(.54,.22,.66,1.43); */
+            transition: 2.5s 200ms ease transform;
+        }
+        .outer:hover .door {
+            transform: rotateY(-90deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="outer">
+        <div class="door">You want look look my picture?</div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //对象的解构赋值
+        const obj = {
+            name:'aaa',
+            hobby:['a','b','c']
+        }
+
+        console.log(name,hobby)
+        let {name,hobby} = obj   //报错，所以name和hobby的创建是let声明
+
+        let {name:na,hobby:ho} = obj
+        console.log(na,ho)
+
+        console.log(asd)
+        var asd = 123
+    </script>
+</body>
+</html>

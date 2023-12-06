@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+    <script src="./axios.js"></script>
+    <style>
+        html {
+            background-color: #666;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <button @click="handleGet" style="margin:30px;">请求数据</button>
+        <ul style="width: 200px;">
+            <li v-for="item in datalist" :key="item.id" style="border: 1px black solid;padding: 20px;">
+                <p>姓名：{{item.name}} </p>
+                <p><button @click="item.age--">-</button> 年龄：{{item.age}} 
+                <button @click="item.age++">+</button></p>
+                <button @click="handlePut( item.name, item.age, item.id)">提交数据</button>
+                <button @click="handleDelete( item.id)">删除数据</button>
+            </li>
+        </ul>
+        <div style="position: absolute; left: 300px; top: 300px;">
+            <p>姓名：<input type="text" v-model.lazy="newName"></p>
+            <p>年龄: <input type="text" v-model.number.lazy="newAge"> </p>
+            <button @click="handlePost">添加数据</button>
+        </div>
+    </div>
+
+    <script>
+        axios.defaults.baseURL = 'http://localhost:3000'
+        const obj = {
+            data() {
+                return {
+                    datalist:[],
+                    newName:'',
+                    newAge:''
+                }
+            },
+            methods:{   
+                handleGet(){
+                    axios({
+                        mothod:'GET',
+                        url:'/list'
+                    }).then(res=>{
+                        this.datalist = res.data
+                    }).catch(res=>{
+                        console.log('get---err')
+                    })
+                },
+                handlePut( name, age, id) {
+                    axios({
+                        method:'PUT',
+                        url:`/list/${id}`,
+                        data:{'name':name,'age':age}
+                    }).then().catch(()=>{console.log('put---err')})
+                },
+                handleDelete( id){
+                    axios({
+                        method:'DELETE',
+                        url:`/list/${id}`
+                    }).then(res=>{
+                        for(let i = 0; i< this.datalist.length;i++){
+                            if( this.datalist[i].id === id){
+                                this.datalist.splice(i,1)
+                            }
+                        }
+                    }).catch(()=>{console.log('delete---err')})
+                },
+                handlePost(){
+                    axios({
+                        method:'POST',
+                        url:'/list',
+                        data:{'name':this.newName,'age':this.newAge}
+                    }).then().catch(()=>{console.log('post---err')})
+                }
+            }
+        }
+        const app = Vue.createApp(obj).mount('#box')
+    </script>
+</body>
+

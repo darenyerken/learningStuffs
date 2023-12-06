@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-image: url(bg3.jpg); background-size: cover;">
+    <script>
+        //哈希表  散列表
+        // - 字典结构 + 哈希函数
+        // - 传统字典结构中对键进行JSON序列化来保存并查询，如果这个表中数据太多或者键很复杂
+        // 则会影响对该表的查询，通过一个哈希算法让键和一个独一无二数映射，再让这个数和值映射来加强查询性能
+        // - 键<->独一无二的数<->值
+
+        // - 为什么不用连续的数？
+        // - 如果已知哈希函数可以直接将键转换成哈希函数后输入数字查询值,连续数无法和键一一映射
+
+        //另设置节点存放原始键
+        class TablePair {
+            constructor( key, value) {
+                this.key = key
+                this.value = value
+            }
+        }
+        class HashMap { 
+            #table = {}
+
+            toStr( item) {
+                if( item === null) {
+                    return 'null'
+                } else if( item === undefined) {
+                    return 'undefined'
+                } else if(typeof item === 'string' || item instanceof String){
+                    return item
+                } else {
+                    return JSON.stringify( item)
+                }
+            }
+
+            hashCode( key) {
+                if( typeof key === 'number') {
+                    return key
+                } else {
+                    const strKey = this.toStr( key)
+                    let hash = 5381
+                    for( let i = 0; i < strKey.length; i++) {
+                        hash = hash*33 + strKey.charCodeAt(i)
+                    }
+                    return hash%1013
+                }
+            }
+
+            set( key, value){
+                if( key != null && value != null) {
+                    const pair = new TablePair( key, value)
+                    this.#table[this.hashCode( key)] = pair
+                    return true
+                } else return false
+            }
+
+            get( key){
+                if( this.hasKey(key)) {
+                    return this.#table[this.hashCode(key)].value
+                } return undefined
+            }
+
+            remove( key) {
+                if( this.hasKey(key)) {
+                    delete this.#table[this.hashCode(key)]
+                } return undefined
+            }
+
+            hasKey( key) {
+                if( key != null) {
+                    return this.#table[this.hashCode(key)] != null
+                } return false
+            }
+
+            keys() {
+                return this.keyValues().map( tablePair=> tablePair.key)
+            }
+
+            values() {
+                return this.keyValues().map( tablePair=> tablePair.value)
+            }
+
+            keyValues() {
+                return Object.values( this.#table)
+            }
+
+            size() {
+                return this.keys().length
+            }
+
+            isEmpty() {
+                return this.size() === 0
+            }
+
+            forEach( fn) {
+                const tablePair = this.keyValues()
+                for( let i = 0; i < tablePair.length; i++) {
+                    fn( tablePair[i].key, tablePair[i].value)
+                }
+            }
+        }
+
+        const hash = new HashMap()
+        hash.set({a:1},100)
+        hash.set('123',200)
+
+    </script>
+</body>
+</html>

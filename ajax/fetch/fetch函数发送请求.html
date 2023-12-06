@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button>fetch发送请求</button>
+    <script>
+        const btn = document.querySelector('button')
+        btn.onclick = function() {
+            fetch('http://127.0.0.1:8000/fetch',{
+                method:'POST',
+                params: {
+                    a:'aaaaa'
+                },
+                headers: {
+                    b:'bbbbb'
+                },
+                body: 'username=Admin$pw=asd1111'
+            }).then(res=>{
+                return res.text() //获取原始返回数据promise对象
+                return res.json() //获取json格式返回数据的promise对象
+            }).then(res=>{
+                console.log(res)
+            })
+        }
+    </script>
+</body>
+</html>

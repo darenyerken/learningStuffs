@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn1">按钮1</button>
+    <button id="btn2">按钮2</button>
+    <hr>
+    <ul>
+        <li id="swk">孙悟空</li>
+        <li id="zbj">猪八戒</li>
+        <li id="shs">沙和尚</li>
+    </ul>
+    <script>
+        const btn1 = document.querySelector('#btn1') 
+        const ul = document.querySelector('ul')
+        btn1.addEventListener('click', function() {
+            const ts = document.createElement('li')
+            ts.id = 'ts'
+            ts.textContent = '唐僧' 
+
+            // 1.在元素中最后添加一个元素
+            // ul.appendChild(ts)
+
+            //2.在元素任意位置添加一个元素
+            // - beforeend  在元素里最后的位置
+            // - afterbegin  在元素里最前面的位置
+            // - beforebegin  在元素前面的位置（兄弟元素
+            // - afterend   在元素后面（兄弟元素
+            // ul.insertAdjacentElement('beforeend', ts)
+
+            //3.在元素任意位置直接植入html代码(只能html代码不能传建立的元素)
+            ul.insertAdjacentHTML('afterbegin','<li id="bgj">白骨精</li>')
+        })
+        const btn2 = document.querySelector('#btn2')
+            btn2.addEventListener('click', function() {
+            const zzj = document.createElement("li")
+            zzj.textContent = "蜘蛛精"
+            zzj.id = "zzj"
+
+            // 获取swk
+            const swk = document.getElementById("swk")
+
+            //4.替换元素
+            // swk.replaceWith(zzj)
+            //5.删除元素
+            swk.remove()
+        })
+        
+    </script>
+</body>
+</html>

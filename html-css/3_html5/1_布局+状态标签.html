@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .content aside{
+            float: right;
+            border: solid 1px black;
+        }
+    </style>
+
+    <!--设置IE总是使用最新的文档模式进行渲染-->
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <!--优先使用 webkit ( Chromium ) 内核进行渲染, 针对360等双核浏览器-->
+    <meta name="renderer" content="webkit">
+    <!--[if lt ie 9]>
+        <script src="./html5shiv.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+    <span>手机电量：</span>
+    <meter value="22" min="0" max="100" low="10" high="20" optimum="50"></meter>
+    <header>
+        <h1>商品汇</h1>
+    </header>
+    <hr>
+    <div class="content">
+        <aside>
+            <nav>
+                <ul>
+                    <li><a href="#">侧边导航1</a></li>
+                    <li><a href="#">侧边导航2</a></li>
+                    <li><a href="#">侧边导航3</a></li>
+                    <li><a href="#">侧边导航4</a></li>
+                </ul>
+            </nav>
+        </aside>
+        <article>
+            <h2>文章标题</h2>
+            <section>
+                <h3>章节标题</h3>
+                <p>
+                    章节内容:Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit, natus! Vitae quas placeat rem perferendis culpa incidunt totam eius quo, reprehenderit voluptatum? Fugiat ad quae nihil, nisi distinctio totam facere sed facilis? Necessitatibus illo sit molestiae dolorem suscipit! Illo animi dicta sed, odit dolor recusandae impedit labore voluptates, praesentium id hic corporis harum totam quis exercitationem, distinctio minima placeat itaque deserunt eligendi consequatur quo obcaecati? Assumenda temporibus nobis voluptatem ab magni inventore ducimus hic. Vero officiis possimus, id corrupti, explicabo voluptates consequatur cumque accusantium error laboriosam velit. Cumque hic corporis qui sunt incidunt dolore doloribus adipisci ullam assumenda distinctio, ipsum tenetur, atque dolores. Voluptas, qui. Numquam, id! Nobis deleniti voluptates assumenda animi dolorem sit quas facere porro sunt quis culpa earum sed odio, vitae molestiae error. Ad eos qui consequuntur repellat harum ut rerum sint a deleniti ex earum quam voluptas culpa adipisci iste eveniet quia eius, ipsam molestiae est?
+                </p>
+            </section>
+            <section>
+                <h3>章节标题</h3>
+                <p>
+                    章节内容:Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit, natus! Vitae quas placeat rem perferendis culpa incidunt totam eius quo, reprehenderit voluptatum? Fugiat ad quae nihil, nisi distinctio totam facere sed facilis? Necessitatibus illo sit molestiae dolorem suscipit! Illo animi dicta sed, odit dolor recusandae impedit labore voluptates, praesentium id hic corporis harum totam quis exercitationem, distinctio minima placeat itaque deserunt eligendi consequatur quo obcaecati? Assumenda temporibus nobis voluptatem ab magni inventore ducimus hic. Vero officiis possimus, id corrupti, explicabo voluptates consequatur cumque accusantium error laboriosam velit. Cumque hic corporis qui sunt incidunt dolore doloribus adipisci ullam assumenda distinctio, ipsum tenetur, atque dolores. Voluptas, qui. Numquam, id! Nobis deleniti voluptates assumenda animi dolorem sit quas facere porro sunt quis culpa earum sed odio, vitae molestiae error. Ad eos qui consequuntur repellat harum ut rerum sint a deleniti ex earum quam voluptas culpa adipisci iste eveniet quia eius, ipsam molestiae est?
+                </p>
+            </section>
+        </article>
+        <span>当前阅读量：</span>
+        <progress max="100" value="30"></progress>
+    </div>
+    <hr>
+    <footer>
+        <a href="#">友情链接</a>
+    </footer>
+</body>
+</html>

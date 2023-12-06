@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script type="module">   //module
+        //es6模块化
+        // - 方便js文件之间的导入
+        // - mjs文件表示模块文件 与传统js区分开来 
+        // - 浏览器对于带有type="module"的<script>，都是异步加载，不会造成堵塞浏览器，
+        //      即等到整个页面渲染完，再执行模块脚本，等同于打开了<script>标签的defer属性。
+        // - 如果网页有多个<script type="module">，它们会按照在页面出现的顺序依次执行。
+        // - 一旦使用了async属性，<script type="module">就不会按照在页面出现的顺序执行，而是只要该模块加载完成，就执行该模块。
+
+
+
+        // ---1. export default {A1}         import obj from './xxx'
+        // - import时候的obj可以自己取名字,使用时  obj.A1
+        // 注意并不是对象方式引入，这里的obj与对象不同
+
+        // import obj from './15_1.mjs'
+        // obj.A1()
+        // obj.test()
+
+        
+        // ---2. export {A1}           import {A1} from './xxx'           
+        // - 可以在函数声明function前直接加export
+        // - 可以 import {A1 as xxx}来自定义函数名
+        
+        // 2-1
+        // b1() 
+        // console.log(b)    //b是let定义的变量，说明import在这个 module js文件中是前提的
+        import { B1 as b1, test as testB, b} from './15_2.mjs'
+        export {b}
+        // testB()
+        
+        // 2-2
+        // import * as obj2 from './15_2.mjs'
+        // obj2.B1()
+        // console.log(obj2.b)
+
+
+        // ---3
+        // import {} from './15_3.js'   //3.js中没有export，这样？？？
+        </script>
+        <script type="module">
+            import {} from 'module'
+            console.log(b)
+        </script>
+</body>
+</html>

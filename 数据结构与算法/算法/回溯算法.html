@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-image: url(bg3.jpg); background-size: cover;">
+    <script>
+        //回溯算法
+        // - 采用递归一步一步试，试错返回上一步向其他方向继续直至找到或穷尽结果没找到
+
+        function exist( board, word) {
+            const row = board.length
+            const column = board[0].length
+            let result = false
+            for( let i = 0; i < row; i++) {
+                for(let j = 0; j < column; j++) {
+                    let result = find( i, j, 0)
+                    if( result) {return result}
+                }
+            }
+            return false
+
+            function find( i, j, cur) {
+                if( i >= row || j >= column || i < 0 || j < 0) {return false}
+                if( board[i][j] !== word[cur]) {return false}
+                if( cur === word.length - 1) {return true}
+                let letter = board[i][j] 
+                board[i][j] = null
+                cur++
+                let result = (
+                    find( i-1, j, cur) ||  //上
+                    find( i+1, j, cur) ||  //下
+                    find( i, j-1, cur) ||  //左
+                    find( i, j+1, cur)     //右
+                )
+                board[i][j] = letter
+                return result
+            }
+        }
+
+        const result = exist([
+            ['A','B','C','E'],
+            ['S','F','C','S'],
+            ['A','D','E','E']
+        ],'ADEESCCBF')
+        console.log(result)
+    </script>
+</body>
+</html>

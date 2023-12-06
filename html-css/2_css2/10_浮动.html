@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #parent {
+            width: 500px;
+            background-color: gray;
+            border: solid 1px black;
+        }
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: orange;
+            border: solid 1px black;
+            margin: 5px;
+            float: left;
+        }
+        #parent::after {
+            content:'';
+            display: block;
+            clear: both;
+        }
+        span {
+            background-color: green;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="parent">
+        <div class="box" id="child1">1</div>
+        <div class="box" id="child2">2</div>
+        <div class="box" id="child3">3</div>
+    </div>
+    <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro, labore.</span>
+</body>
+</html>

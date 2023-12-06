@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Object.getOwnPropertiesDescription
+        const obj = {
+            name:'kerwin',
+            arr:[1,2,3,[4]],
+            location:{
+                locate:'辽宁',
+                city:'大连'
+            },
+            get city() {
+                return this.location.city
+            },
+            set city( value) {
+                this.location.city = value
+            }
+        }
+        console.log(obj)
+        const obj1 = {}
+        Object.assign(obj1, obj)
+        console.log(obj1)  //与obj不一样，没有get set方法
+        obj.arr[0]=100
+        console.log(obj)
+        console.log(obj1)  //而且还是浅复制
+
+        const obj2 = {}
+        Object.defineProperties(obj2,Object.getOwnPropertyDescriptors(obj))
+        console.log(obj2)  //与obj一摸一样
+        obj.arr[1] = 200
+        console.log(obj2)   //虽然获取到了get set 但还是浅复制
+
+        //Object.entries  将对象转换为数组键值对方便进一步转化成map
+    </script>
+</body>
+</html>

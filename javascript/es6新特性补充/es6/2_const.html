@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //const 特性与let一致
+        //对象属性也可以'const',用Object.freeze(对象)方法
+        const obj = Object.freeze({
+            name:'小孙',
+            obj2:{
+                name:'小力'
+            }
+        })
+        obj.name = 'aaa'
+        obj.obj2.name = 'bbb'
+        console.log(obj)
+        //所以freeze只能冻结一层
+    </script>
+</body>
+</html>

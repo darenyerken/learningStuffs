@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //----------Symbol
+        // - 新的数据类型
+        // - 独一无二
+        // - 不能运算
+
+        //- 作为独一无二的对象名, 可以接受一个字符串作为描述符
+        const s = 'say'
+        const z = {a:1}
+        const x = Symbol('say')
+        const obj = {
+            name:'aaa',
+            [s]:function() {
+                console.log(this.name)
+            },
+            [x]:function() {
+                console.log(this.name + ' function key is Symbol')
+            },
+            [z]:100
+        }
+        obj[s]()
+        obj['say']()
+        console.log(obj[z])
+        console.log(obj[{a:1}])
+        obj[x]()
+        obj[Symbol('say')]()   //前面都不报错 这里就报错了
+
+        // //遍历普通属性
+        // for( item in obj) {
+        //     console.log(item)
+        // }
+        // // - 遍历symbol属性
+        // console.log(Object.getOwnPropertySymbols(obj))
+        // Object.getOwnPropertySymbols(obj).forEach( item=> obj[item] = 1)
+        // console.log(obj)
+        // // 遍历所有属性
+        // Reflect.ownKeys(obj).forEach(item=>{
+        //     console.log(item,obj[item])
+        // })
+
+        //Symbol可以和const配合定义常量
+        // const AUDIO = Symbol()
+        // const VIDEO = Symbol()
+        // function fn( a) {
+        //     switch( a) {
+        //         case AUDIO:
+        //             console.log('play audio')
+        //             break
+        //         case VIDEO:
+        //             console.log('play video')
+        //             break
+        //     }
+        // }
+        // fn(VIDEO)
+    </script>
+</body>
+</html>

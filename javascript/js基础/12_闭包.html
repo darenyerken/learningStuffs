@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //高阶函数：以函数作为参数或者返回值的函数称为高阶函数
+
+        //闭包
+        // - 当需要隐藏以一些不想被外部访问的内容时候用闭包
+        // - outer函数内定义希望不被外部影响的对象，inner函数中使用这个对象，并返回inner函数 
+        // - 函数的作用域在他创建时就产生，与调用位置无关，闭包利用的就是这个原理
+        function outer() {
+            let num = 0
+            return function fn() {
+                setInterval(function() {
+                    num++
+                    console.log(num)
+                },3000)
+            }
+        }
+        const result = outer()
+        // const result2 = outer()  //每当外部函数被调用一次就会创建一个新的闭包，不影响其他闭包
+        result()
+        // result()
+        // result2()
+        // result2()
+        // result()
+        // result()
+    </script>
+</body>
+</html>

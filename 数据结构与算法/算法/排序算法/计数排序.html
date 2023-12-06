@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-image: url(bg3.jpg); background-size: cover;">
+    <script>
+        //计数排序法
+        // - 创建另一个数组记录原数字中每个数出现的次数再导入到第三个数组中
+        // - 原理：数组下标是有序的
+
+        function countSort( arr) {
+            let maxValue = maxInArr(arr)
+            const countArr = new Array(maxValue + 1) 
+            arr.forEach(element => {
+                if(!countArr[element]) {
+                    countArr[element] = 0
+                }
+                countArr[element]++
+            });
+            const newArr = []
+            countArr.forEach( (item,index) => {
+                while( item > 0) {
+                    newArr.push(index)
+                    item--
+                }
+            })
+            return newArr
+        }
+        //获取数组中的最大值
+        function maxInArr( arr) {
+            let max = arr[0]
+            for( let i = 0; i < arr.length; i++) {
+                if( arr[i] > max) max = arr[i]
+            }
+            return max
+        }
+        let arr = [5,2,3,4,1,88,54,19,11,11,11,11,99,11,11,7,34,1,0]
+        let result = countSort(arr)
+        console.log( result)
+    </script>
+</body>
+</html>

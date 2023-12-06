@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+    <style>
+        .bigger {
+            font-size: 30px;
+        }
+
+        .red {
+            color: red;
+        }
+
+        .yellowBack {
+            background-color: yellow;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <div :class="status">状态方式改变class</div>
+        <div :class="classObj">对象方式改变class</div>
+        <div :class="classArr">数组方式改变class</div>
+    </div>
+
+    <script>
+        const obj = {
+            data() {
+                return {
+                    status: 'red bigger yellowBack',
+                    classObj: {
+                        bigger: true,
+                        red: false,
+                        yellowBack: true
+                    },
+                    classArr:['bigger','red']
+
+                }
+            }
+        }
+        Vue.createApp(obj).mount('#box')
+    </script>
+</body>
+
+</html>

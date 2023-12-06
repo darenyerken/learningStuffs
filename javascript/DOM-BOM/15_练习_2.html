@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+
+            img {
+                vertical-align: top;
+            }
+
+            ul {
+                list-style: none;
+            }
+
+            .outer {
+                width: 640px;
+                height: 390px;
+                margin: 100px auto;
+                position: relative;
+            }
+
+            .img-list {
+                height: 390px;
+            }
+
+            .img-list li {
+                position: absolute;
+                opacity: 0;
+                transition: opacity 1s;
+            }
+
+            .img-list .current {
+                z-index: 2;
+                opacity: 1;
+            }
+            .circles .current {
+                opacity: 1 !important;
+            }
+
+            /* 
+                设置两个箭头的样式
+            */
+            .prev-next>a {
+                font-size: 60px;
+                color: #fff;
+                font-weight: bold;
+                text-decoration: none;
+                position: absolute;
+                height: 60px;
+                top: 0;
+                bottom: 0;
+                margin: auto;
+                z-index: 2;
+                opacity: 0.5;
+            }
+
+            .prev-next>a:hover {
+                opacity: 1;
+            }
+
+            #next {
+                right: 0;
+            }
+            /* 轮播小圆点框架 */
+            .outer .circles {
+                width: 25%;
+                height: 5%;
+                /* background-color: #000; */
+                border-radius: 30px;
+                z-index: 3;
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                left: 0;
+                margin: auto;
+                margin-bottom: 5px;
+
+                display: flex;
+                flex-flow: row nowrap;
+                justify-content: space-evenly;
+                align-items: center;
+            }
+            /* 小圆点背后幕布 */
+            .outer::after {
+                content: '';
+                width: 25%;
+                height: 5%;
+                background-color: #000;
+                opacity: .2;
+                border-radius: 30px;
+                z-index: 2;
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                left: 0;
+                margin: auto;
+                margin-bottom: 5px;
+            }
+            /* 轮播小圆点 */
+            .outer .circles a {
+                display: inline-block;
+                width: 12px;
+                height: 12px;
+                border-radius: 50%;
+                opacity: .5;
+                background-color: #fff;
+                cursor: pointer;
+            }
+            .outer .circles a:hover {
+                opacity: 1;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="outer">
+            <ul class="img-list">
+                <li class="current">
+                    <a href="javascript:;">
+                        <img src="./images/1.png" />
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:;">
+                        <img src="./images/2.png" />
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:;">
+                        <img src="./images/3.png" />
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:;">
+                        <img src="./images/4.png" />
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:;">
+                        <img src="./images/5.png" />
+                    </a>
+                </li>
+            </ul>
+
+            <!-- 添加切换按钮-->
+            <div class="prev-next">
+                <a id="prev" href="javascript:;"><</a>
+                <a id="next" href="javascript:;">></a>
+            <!-- 添加轮播小圆点 -->
+                <div class="circles">
+                    <a href="javascript:;" class="current"></a>
+                    <a href="javascript:;"></a>
+                    <a href="javascript:;"></a>
+                    <a href="javascript:;"></a>
+                    <a href="javascript:;"></a>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            /* 
+                自动切换图片
+            */
+            function auto() {
+                    // 获取当前显示的图片
+                    const current = document.querySelector(".img-list .current")
+                    const currentC = document.querySelector('.circles .current')
+                    // 获取下一个图片
+                    const next =
+                        current.nextElementSibling ||
+                        document.getElementsByTagName("li")[0]
+                    const nextC = currentC.nextElementSibling || document.querySelector('.circles a')
+                    // 切换显示状态
+                    current.classList.remove("current")
+                    next.classList.add("current")
+
+                    currentC.classList.remove("current")
+                    nextC.classList.add("current")
+
+                    timer = setTimeout(auto, 3000)
+            }
+            let timer = setTimeout(auto, 3000)
+
+            /* 
+                点击按钮切换图片
+            */
+            const switcher = document.querySelector('.prev-next')
+            let counter = 0
+            switcher.addEventListener('click', function( event) {
+                if(event.target.tagName === 'A') {
+                    const current = document.querySelector('.img-list .current')   //获取当前图片li对象
+                    const list = [...document.querySelectorAll('.img-list li')]    //获取所有图片的li对象
+                    const circles = [...document.querySelectorAll('.circles a')]   //获取所有小圆点
+                    counter = list.indexOf(current)
+                    list[counter].classList.remove('current')
+                    circles[counter].classList.remove('current')
+                    if( event.target.id === 'prev') {       //点击后退
+                        list[counter > 0 ? counter - 1 : 4].classList.add('current')
+                        circles[counter > 0 ? counter - 1 : 4].classList.add('current')
+                    } else if( event.target.id === 'next') { //点击前进
+                        list[counter < 4 ? counter + 1 : 0].classList.add('current')
+                        circles[counter < 4 ? counter + 1 : 0].classList.add('current')
+                    } else {                                 //点击小圆点
+                        list[circles.indexOf(event.target)].classList.add('current')
+                        event.target.classList.add('current')
+                    }
+                }
+            })
+
+            //鼠标进入outer范围停止自动轮播
+            const outer = document.querySelector('.outer')
+            outer.addEventListener('mouseenter' ,function( ) {
+                clearTimeout(timer)
+                timer = null
+            },true)
+            outer.addEventListener('mouseout' ,function( ) {
+                if( timer === null) {
+                    timer = setTimeout(auto,3000)
+                }
+            })
+
+        </script>
+    </body>
+</html>

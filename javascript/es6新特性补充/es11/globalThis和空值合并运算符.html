@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //globalThis  浏览器中指向window，nodejs中指向global
+
+        // ？？ 空值合并运算符(逻辑运算符)
+        // - 当且仅当前面的值为null或者undefined时才会判否
+        // - 而 || 对0 '' 等空值也判否
+        // - 返回第一个不为null或者undefined的值
+        console.log('' || 1107)
+        console.log(0 ?? 1107)
+    </script>
+</body>
+</html>

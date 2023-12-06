@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+    <style>
+        .current{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        {{text}}
+        {{isJack? 'hello':'fuck away'}}
+        <div v-bind:class="color" :style="div_style">color</div>
+        <img v-bind='imgObj'>
+    </div>
+    <script>
+        //可以写表达式，不能写语句
+        // {{}} 
+        // v-bind:    可以简写为冒号 :
+        const obj = {
+            text:"kerwin",
+            isJack: true,
+            color:'current',
+            div_style:'font-size: 30px; color: blue',
+            imgObj: {
+                src:'https://ts1.cn.mm.bing.net/th/id/R-C.66d7b796377883a92aad65b283ef1f84?rik=sQ%2fKoYAcr%2bOwsw&riu=http%3a%2f%2fwww.quazero.com%2fuploads%2fallimg%2f140305%2f1-140305131415.jpg&ehk=Hxl%2fQ9pbEiuuybrGWTEPJOhvrFK9C3vyCcWicooXfNE%3d&risl=&pid=ImgRaw&r=0',
+                width: 300,
+            }
+        }
+        //app就是#box这个dom元素的proxy 
+        var app = Vue.createApp({
+            data(){
+                return obj
+            }
+        }).mount("#box")
+    </script>
+</body>
+</html>

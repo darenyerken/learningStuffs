@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>试验</title>
+</head>
+<style>
+
+</style>
+
+<body>
+    <script>
+        var lengthOfLongestSubstring = function (s) {
+            let maxStringLength = 0
+            let head = null
+            let current = null
+            let count = 0
+            function LinkedNode(data) {
+                this.data = data || ''
+                this.next = null
+            }
+            for (let i = 0; i < s.length - maxStringLength; i++) {
+                count = 0
+                head = current = new LinkedNode(s[i])
+                count++
+                for (let j = i + 1; j < s.length; j++) {
+                    while (current.data !== s[j] && current.next != null) {
+                        current = current.next
+                    }
+                    if (current.data !== s[j] && current.next == null) {
+                        current.next = new LinkedNode(s[j])
+                        current = head
+                        count++
+                    } else {
+                        if (count > maxStringLength) {
+                            maxStringLength = count
+                        }
+                        break
+                    }
+                }
+            }
+            return maxStringLength
+        };
+        console.log(lengthOfLongestSubstring('au'))
+    </script>
+</body>
+
+</html>

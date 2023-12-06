@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-image: url(bg3.jpg); background-size: cover;">
+    <script>
+        //特点：先进后出
+
+        class Stack {
+            #items = []
+            //压栈
+            push( data) {
+                this.#items.push(data)
+            }
+            //出栈
+            pop() {
+                return this.#items.pop()
+            }
+            //判断是否为空
+            isEmpty() {
+                return this.#items.length === 0
+            }
+            //查看栈顶
+            peek() {
+                return this.#items.at(-1)
+            }
+            //返回栈长度
+            size() {
+                return this.#items.length
+            }
+            //清空栈
+            clear() {
+                this.#items = []
+            }
+
+            toString() {
+                return this.#items.join(' ')
+            }
+        }
+
+        const stack = new Stack()
+
+        //应用场景一：十进制到其他进制的转换
+        function decConvert( decNum, base) {
+            if (!isNaN(+decNum) && !isNaN(+base)) {
+                let num = +decNum
+                const stack = new Stack()
+                let string = ''
+                let baseString = '0123456789ABCDEF'
+                while(num > 0) {
+                    stack.push(num%base)
+                    num = Math.floor(num/base)
+                }
+                while( !stack.isEmpty()) {
+                    string += baseString[stack.pop()]
+                }
+                return string
+            } else {
+                console.log('Arguments error')
+            }
+        }
+    </script>
+</body>
+</html>

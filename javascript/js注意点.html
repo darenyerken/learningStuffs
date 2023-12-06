@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // - 1.三个null连等为false
+        // - 2.往函数的参数传递中，无法将通过给形参赋值改变实参 例如 a = null只会将形参设置为null而不改变实参
+        //   - 但是可以 a.name = xxx 改变此引用类型
+        // - 3.原始值的类型用 typeof 判断，包装类的类型或者引用类型的类型用 instanceof判断。最精确的应该是Object.prototype.toString.call()
+        // - 4.//Math.ceil(-1/2) === -0
+        // - 5. 0.1 + 0.2 不等于 0.3
+        // - 6.逻辑运算符与真假值 
+        // let a = null
+        // let b = 0
+        // let c
+        // if(c = a ?? b) {
+        //     console.log('??: ',true, ' c = ',c)
+        // } else console.log('??: ',false, ' c = ', c)
+        // if(c = a && b && 8 ) {
+        //     console.log('&&: ',true, ' c = ', c)
+        // } else console.log('&&: ',false, ' c = ', c)
+        // if(c = a || b || undefined) {
+        //     console.log('||: ',true, ' c = ', c)
+        // } else console.log('||: ',false, ' c = ', c)
+        // // true: 0以外的数字  非空字符串(空格也为真)
+        // // false: 正负0   空字符串  null  undefined
+        // // ?? 返回第一个不为null undefined的值
+        // // && 返回最后判断的真值 或 如果有假就返回第一个假值
+        // // || 返回最后判断的假值 或 如果有真值就返回第一个真值
+    
+    </script>
+</body>
+</html>

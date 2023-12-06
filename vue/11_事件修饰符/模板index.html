@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+    <style>
+
+    </style>
+</head>
+
+<body>
+
+    <div id="box">
+        {{count}}
+        <ul @click="count++">
+            <li @click="count++">11111</li>
+            <li @click.stop="count++">22222</li>
+            <!-- 可以链式调用 -->
+            <!-- 但是once和其他修饰符不能一起用,可能once不仅会禁用该事件绑定的函数，也会禁用修饰符 -->
+            <button @click.stop.once="count++">3333</button>  
+        </ul>
+        <!-- 可以不用写内容        -->
+        <form action="" @click.prevent>
+            <button @click="">提交</button>
+        </form>
+        <input type="text" @keyup.a.s.d.w.enter="fnKeyup">
+    </div>
+
+    <script>
+        const obj = {
+            data() {
+                return {
+                    count:0
+                }
+            },
+            methods:{
+                fnKeyup( evt) {
+                    console.log('111')
+                }
+            }
+        }
+        const app = Vue.createApp(obj).mount('#box')
+    </script>
+</body>
+
+</html>

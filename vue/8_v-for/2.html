@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <!-- v-for 语句必须设置一个key属性来帮助虚拟DOM识别创建的每一项-->
+    <!-- 在v-for渲染的dom节点不再发生改变时候可以用index -->
+    <!-- 而v-for渲染的dom节点经常发生改变的话不能用index，例如往这些DOM节点中倒数第n位插入一个节点会让虚拟DOM进行n+1次DOM操作，性能差-->
+    <!-- 而用一个每个列表项独有的值（例如下方例子中的id）能让虚拟DOM单独识别每一个列表项从而只执行一次DOM操作 -->
+    <!-- 虚拟DOM的本质是一个js对象 -->
+    <div id="box">
+        <ul>
+            <li v-for="item in shopList">
+                商品名：{{item.title}}
+                <div v-if="item.status === 0">
+                    商品状态：待付款 
+                </div>
+                <div v-else-if="item.status === 1">
+                    商品状态：已付款 
+                </div>
+                <div v-else>
+                    商品状态：运输中 
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        const obj = {
+            data() {
+                return {
+                    shopList:[
+                        {
+                            title:'华为手机',
+                            status:0,
+                            id:111
+                        },
+                        {
+                            title:'耐克上衣',
+                            status:3,
+                            id:222
+                        },
+                        {
+                            title:'零食包',
+                            status:2,
+                            id:333
+                        },
+                        {
+                            title:'阿迪达斯上衣',
+                            status:2,
+                            id:444
+                        },
+                        {
+                            title:'casio手表',
+                            status:1,
+                            id:555
+                        },
+                        {
+                            title:'u盘',
+                            status:1,
+                            id:666
+                        },
+                    ]
+                }
+            },
+            methods:{
+
+            }
+        }
+        const app = Vue.createApp(obj).mount('#box')
+    </script>
+</body>
+
+</html>

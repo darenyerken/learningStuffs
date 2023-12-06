@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .outer {
+            width: 300px;
+            height: 600px;
+            background-color: skyblue;
+            margin: 0 auto;
+
+            display: flex;
+            flex-direction: row;
+            
+            /* 默认值 nowrap */
+            /* flex-wrap: wrap; */
+            justify-content: flex-start;
+        }
+        .inner {
+            box-sizing: border-box;
+            width: 200px;
+            height: 200px;
+            text-align: center;
+            line-height: 200px;
+            background-color: orange;
+            border: solid 1px black;
+            /*  flex-grow:写在伸缩项上，对伸缩容器冗余空间的分配比例权值 ||| 1：伸缩容器多出来的空间，每个伸缩项目均分 */
+            /* flex-grow: 1; */
+            /* flex-shrink:算法和grow不一样，分母是每个容器(伸缩项宽度*权值)之和，分子是(伸缩项宽度*权值),分式乘以伸缩盒缩小量 ||| 前提是nowrap*/
+            flex-shrink: 1;
+        }
+        .inner1 {
+            width: 100px;
+        }
+        .inner2 {
+            width: 300px;
+        }
+        .inner3 {
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="outer">
+        <div class="inner inner1">1</div>
+        <div class="inner inner2">2</div>
+        <div class="inner inner3">3</div>
+    </div>
+</body>
+</html>

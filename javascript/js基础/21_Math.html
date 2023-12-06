@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //Math
+        // - Math是工具类，不能new
+        console.log(Math.PI)
+        const arr = [1,2,3,4,5,6,7]
+        console.log(Math.max(...arr) + '  ' + Math.min(...arr))
+        console.log(Math.abs(-7))  //返回绝对值
+        console.log(Math.sqrt(16))  // 返回平方根
+        console.log(Math.pow(4,2), 4**2)   //返回次幂  不如 4**2
+        console.log(Math.random())   //返回[0,1)之间的随机数 
+        console.log(Math.floor(2.11))  //向上取整
+        console.log(Math.ceil(2.11))      //向下取整
+        console.log(Math.round(2.11))   //四舍五入
+        console.log(Math.trunc(2.11))  //直接去除小数位
+        
+        //骰子
+        function dice() {
+            return Math.trunc(Math.random() * 6 + 1)
+        }
+        console.log(dice())
+        </script>
+</body>
+</html>

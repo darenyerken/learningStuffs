@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //数组新增.at（）支持负数输入
+
+        //正则表达式中括号括出来的每个组都能给出索引   /d
+        let str = '今天是2001年5月26日'
+        let reg = /(?<year>[0-9]{4})年(?<month>[0-9]{1,})月(?<day>[0-9]{2})日/d
+        let date = reg.exec(str)
+        console.log(date)
+    </script>
+</body>
+</html>

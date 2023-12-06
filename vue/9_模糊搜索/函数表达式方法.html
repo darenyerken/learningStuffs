@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+    <style>
+        html {
+            background-color: #999797;
+            margin: 0;
+            padding: 0;
+        }
+        li {
+           list-style: none; 
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="box">
+        <input type="text" v-model="mytext" autofocus>
+        <ul>
+            <li v-for="(item) of filtedList()">
+                {{item}}
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        const obj = {
+            data() {
+                return {
+                    mytext:'',
+                    list:['abca','bcaa','asdf','dfgh','kkkv','vkkk']
+                }
+            },
+            methods:{
+                filtedList() {
+                    return this.list.filter(item=>item.includes(this.mytext))
+                }
+            }
+        }
+        const app = Vue.createApp(obj).mount('#box')
+    </script>
+</body>
+
+</html>

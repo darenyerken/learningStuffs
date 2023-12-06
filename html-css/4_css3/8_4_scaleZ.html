@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            transform-style: preserve-3d;
+            perspective: 100px 100px;
+            perspective-origin: 500px;
+        }
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: orange;
+            position: absolute;
+            left: 50%;
+            margin-top: 300px;
+            transform: translate( -50%, -50%) scaleZ(100) rotateX(45deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="box">1111</div>
+</body>
+</html>

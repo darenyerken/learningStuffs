@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 函数内let有暂存性死区
+        // let a = 111
+        // (function() {
+        //     console.log(a)  //本应可以访问外部a，所以a其实是有提升的，只有声明提升 
+        //     let a = 222
+        // }())
+
+        // let与顶层不挂钩
+        let b = 123
+        var c = 456
+        console.log(window.c)
+        console.log(window.a)
+
+        //函数用let还是不提升
+        console.log(add(1,2))
+        let add = function ( a, b) {
+            return a+b
+        }
+        </script>
+</body>
+</html>

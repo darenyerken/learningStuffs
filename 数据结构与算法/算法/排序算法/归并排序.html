@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-image: url(bg3.jpg); background-size: cover;">
+    <script>
+        //归并排序
+        // - 将数组切成一个一个小数组并重新整合排序
+        
+        function mergeSort( array) {
+            let length = array.length
+            if( length > 1) {
+                const middle = Math.floor(length / 2)
+                const left = mergeSort( array.slice( 0, middle))
+                const right = mergeSort( array.slice( middle,length))
+                array = merge( left, right)
+            }
+            return array
+        }
+
+        function merge( left, right) {
+            let i = 0
+            let j = 0
+            let result = [];
+            while( (i < left.length) && (j < right.length)) {
+                result.push(left[i] < right[j] ? left[i++] : right[j++])
+            }
+            return result.concat( i < left.length ? left.slice(i) : right.slice(j))
+        }
+
+        let arr = [5,2,3,4,1,123,54,1234,11,11,11,11,11,11,11,7,34,1,0]
+        let result = mergeSort(arr)
+        console.log( result)
+    </script>
+</body>
+</html>

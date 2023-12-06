@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button class="btn">Button</button>
+    <script>
+        // - setInterval   设置时间间隔来反复执行代码  毫秒计时
+        const interval = function () {
+            let times = 0
+            return setInterval(function(){
+                if(times++ >= 5) {
+                    clearInterval(interval)   //清除时间间隔
+                }
+                console.log('我是interval')
+            },3000)
+        }
+        interval()
+
+        // - setTimeout(时间间隔名)  设置延迟来执行代码   毫秒计时
+        // const btn = document.querySelector('.btn') 
+        // btn.addEventListener('click', function() {
+        //     setTimeout(function(){
+        //         console.log('我是setTimeout')
+        //     },3000)
+        // })
+        // clearTimeout(延迟函数名)  清除延迟
+
+        //  BUG：
+        //js是单线程语言，只有一个调用栈来存放正在执行的代码和函数，有一个消息队列来存放正在等在上一个代码执行完毕的duilie
+        //setinterval和setTimeout都只是在时间到了以后把代码块放进消息队列中，会不会立即执行就看调用栈中是否有正在执行函数。
+        //如果调用栈中有正在执行的函数，他们两个的代码块会放进消息队列中排队，而计时不受影响。
+        // console.time()     //计时开始
+        // setInterval(function(){
+        //     console.timeEnd()
+        //     alert('确认')
+        //     console.time()
+        // },3000)
+
+        //  solution：
+        // console.time()
+        // const timer = setTimeout(function fn() {
+        //     console.timeEnd()
+        //     alert('确认')
+        //     console.time()
+        //     setTimeout(fn,3000)
+        // },3000)
+    </script>
+</body>
+</html>

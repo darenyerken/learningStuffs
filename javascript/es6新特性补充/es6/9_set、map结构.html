@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //--------set
+        // 元素不重复的集合对象
+
+        // - 利用set进行复杂结构去重
+    //    function uni(arr) {
+    //         let res = new Set()
+    //         return arr.filter(item => {
+    //             let id = JSON.stringify(item)
+    //             if (res.has(id)) {
+    //                 return false
+    //             } else {
+    //                 res.add(id)
+    //                 return true
+    //             }
+    //         })
+    //     }
+
+    //     var arr = [1, 2, 3, "data", {
+    //         name: "kerwin"
+    //     }, {
+    //         name: "kerwin"
+    //     },
+    //             [1, 2],
+    //             [3, 4],
+    //             [3, 4]
+    //             ]
+    //     console.log(uni(arr)) 
+
+        // const set = new Set([1,2,3,4,5,6,5,4,3]) //set的constructor只能传有iterator类型
+        // console.log(...set)
+        // for( let i of set.entries()) {
+        //     console.log(i)
+        // }
+
+
+    // ----------map
+    // - 可以用其他类型作为键名,其实对象也可以
+    // - set，get，delete，keys（），values（），entries（）,clear()
+
+    // let name = {}
+    // // let obj = {
+    // //     [name]:1
+    // // }
+    // // console.log(obj[name])
+
+    // const map = new Map([[name,123],['age',500]])
+    // // console.log(map.get(name))
+    // // console.log(...map)
+    // map.forEach( (value,key) => {
+    //     console.log(value)
+    // })
+    // for( let [key,value] of map) {
+    //     console.log(key)
+    // }
+
+    </script>
+</body>
+</html>

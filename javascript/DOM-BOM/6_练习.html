@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        form {
+            width: fit-content;
+            margin: 50px auto;
+            text-align: center;
+            border: 1px black solid;
+        }
+        div {
+            margin:10px 10px;
+        }
+    </style>
+</head>
+<body>
+    <form action="#" target="_self">
+        <div>
+            <span>请选择你的爱好：</span>
+            <input type="checkbox" name="hobby" value="乒乓球">乒乓球
+            <input type="checkbox" name="hobby" value="篮球">篮球
+            <input type="checkbox" name="hobby" value="足球">足球
+            <input type="checkbox" name="hobby" value="羽毛球">羽毛球
+        </div>
+        <div>
+            <button id="all" type="button">全选</button>
+            <button id="conter" type="button">反选</button>
+            <button id="cancel" type="button">取消</button>
+            <button type="submit">提交</button>
+        </div>
+        <script>
+            //获取checkbox
+            const cbs = document.querySelectorAll('input')
+            //设置全选
+            const all = document.querySelector('#all')
+            all.addEventListener('click', function() {
+                for(let i = 0; i < cbs.length; i++) {
+                    cbs[i].checked = true
+                }
+            })
+            //设置反选
+            const conter = document.querySelector('#conter')
+            conter.addEventListener('click', function() {
+                for(let i = 0; i < cbs.length; i++) {
+                    cbs[i].checked = !cbs[i].checked
+                }
+            })
+            //设置取消 
+            const cancel = document.querySelector('#cancel')
+            cancel.addEventListener('click', function() {
+                for(let i = 0; i < cbs.length; i++) {
+                    cbs[i].checked = false
+                }
+            })
+            console.log(cbs[0])
+        </script>
+    </form>
+</body>
+</html>

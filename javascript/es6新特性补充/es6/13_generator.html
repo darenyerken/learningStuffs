@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // generator 生成器
+        // 用于异步编程
+        // 配合ajax流程控制
+        // generator就是流程控制器 比如先请求数据一，成功就加工后给服务器二传过去，失败就停止
+        // 类似于生成一个迭代器
+        function ajax( data) {
+            console.log('ajax running')
+            return pro1 = new Promise((resolve, reject) => {
+                setTimeout(function() {
+                    resolve(data)  //返回fulfilled
+                    reject(data)  //返回rejected
+                },3000)
+            })
+        }
+
+
+        function* gen(){
+            let res = yield ajax( 'data1') 
+            console.log(res,' throuth gen ')
+            let res2 = yield ajax( res)
+            console.log(res2,' throuth gen ')
+        }
+        console.log('同步代码1')
+        const g = gen()     //↓ res从这里开始传递
+        g.next().value.then((res)=>{
+            console.log(res + ' throuth then')
+            g.next(res).value.then((res)=>{ //下一个next执行后yield语句后的内容才会执行         
+                console.log(res + ' throuth then')
+                g.next(res)
+            })
+        })  
+        console.log('同步代码2')
+        //第一个next不完整
+        // let res2 = g.next('yyy').value
+        // console.log(res2)
+        // let res3 = g.next('zzz').value
+        // console.log(res3)
+    </script>
+</body>
+</html>

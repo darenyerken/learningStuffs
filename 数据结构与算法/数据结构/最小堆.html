@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <body style="background-image: url(bg3.jpg); background-size: cover;">
+<body>
+    <script>
+        //最小堆
+        // - 完全二叉树
+        // - 每一个节点的子节点大于等于它本身
+        // - 最顶层一定是值最小的节点
+        // - 用数组管理
+        const Compare = {
+            less: -1,
+            bigger: 1,
+            equ: 0
+        }
+        class MinHeap {
+            heap = []
+
+            // 比较大小
+            compare(a, b) {
+                if (a === b) {    
+                    return Compare.equals;
+                }
+                return a > b ? Compare.bigger : Compare.less;
+            }
+
+            // 获取父节点
+            getParentIndex( index) {
+                return Math.floor( (index-1)/2)
+            }
+            // 根据索引交换值
+            swap( a, b) {
+                let temp = this.heap[a]
+                this.heap[a] = this.heap[b]
+                this.heap[b] = temp
+            }
+            // 新加入的值迭代往上与父节点比大小并交换位置
+            shiftUp( index) {
+                let parentIndex = this.getParentIndex( index)
+                if( index>0 &&
+                    this.compare( this.heap[ index],this.heap[ parentIndex]) === Compare.less
+                ){
+                    this.swap( index, parentIndex)
+                    this.shiftUp( parentIndex)
+                }
+            }
+            // 获取堆长度
+            size() {
+                return this.heap.length
+            }
+            // 判断是否为空
+            isEmpty() {
+                return this.size() === 0
+            }
+            // 插入值
+            insert( value) {
+                if( value != null) {
+                    this.heap.push(value)
+                    this.shiftUp( this.size() - 1)
+                } else {
+                    return false
+                }
+            }
+            // 获取最小值
+            finMinimum() {
+                return this.heap[0]
+            }
+            // 获取左子边节点索引
+            getLeftIndex( index) {
+                return (index * 2 + 1)
+            }
+            // 获取右边子节点索引
+            getRightIndex( index) {
+                return (index * 2 + 2)
+            }
+            // 迭代地从上往下与子节点比较大小并交换位置
+            shiftDown( index) {
+                let current = index
+                let left = this.getLeftIndex( index)
+                let right = this.getRightIndex( index)
+                if( left<this.size() &&
+                    this.compare( this.heap[left], this.heap[current]) === Compare.less
+                ) {
+                    current = left
+                }
+                if( right<this.size() &&
+                    this.compare( this.heap[right], this.heap[current]) === Compare.less
+                ) {
+                    current = right
+                }
+                if( current !== index) {
+                    this.swap( current, index)
+                    this.shiftDown( current)
+                }
+            }
+            // 弹出最小值并拿最后一个节点放到第一位，然后往下shiftDown
+            extract() {
+                if( this.isEmpty()) {
+                    return undefined
+                }else if( this.size() === 1) {
+                    return this.heap.shift()
+                } else {
+                    let temp = this.heap[0]
+                    this.heap[0] = this.heap.pop()
+                    this.shiftDown( 0)
+                    return temp
+                }
+            }
+            // 获取最小值
+            findTarget() {
+                return this.heap[0]
+            }
+        }
+        const a = new MinHeap()
+        a.insert(5)
+        a.insert(4)
+        a.insert(2)
+        a.insert(10)
+        a.insert(3)
+        a.insert(1)
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-image: url(bg3.jpg); background-size: cover;">
+    <script>
+        // 动态规划
+        // - 将问题分解成一层一层相互关联的小问题，下层问题依赖上层问题的最优解，以此类推得出最终问题的最优解
+        
+        //背包问题
+
+        function knapSack( weights, values, load) {
+            let storey = weights.length
+            const bestSolution = [[]]
+            // load = load - Math.min(...weights)
+            for( let currentLoad = 0; currentLoad <= load; currentLoad++) {
+                if( currentLoad >= weights[0]) {
+                    bestSolution[0][currentLoad] = values[0]
+                } else {
+                    bestSolution[0][currentLoad] = 0
+                }
+            }
+            for( let currentStorey = 1; currentStorey < storey; currentStorey++) {
+                bestSolution[currentStorey] = Array(load).fill(0)
+                for( let currentLoad = 0; currentLoad <= load; currentLoad++) {
+                    if( currentLoad < weights[currentStorey]) {
+                        bestSolution[currentStorey][currentLoad] = bestSolution[currentStorey-1][currentLoad]
+                    } else {
+                        bestSolution[currentStorey][currentLoad] = 
+                        Math.max(bestSolution[currentStorey-1][currentLoad]
+                        ,bestSolution[currentStorey-1][currentLoad-weights[currentStorey]]+values[currentStorey])
+                    }
+                }
+            }
+            console.log(bestSolution)
+            return bestSolution[storey - 1][load]
+        }
+
+        weights = [2,2,6,5,4]
+        values = [6,3,5,4,6]
+        load = 10
+        let result = knapSack( weights,values, load)
+        console.log(result)
+    </script>
+</body>
+</html>

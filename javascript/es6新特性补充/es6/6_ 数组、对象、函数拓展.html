@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <script>
+        //---------数组拓展
+        // - Array.from() 将类数组转换成数组
+        // let divs = document.querySelectorAll('div')
+        // console.log(divs)
+        // divs = Array.from(divs)
+        // console.log(divs)
+
+        // - Array.of
+        // let arr1 = Array(3)
+        // let arr2 = Array.of(3)
+        // console.log(arr1,arr2)
+
+        //.flatMap方法   遍历数组中的对象的属性并整合到一起 
+        // let arr1 = [{list:[1,2,3],name:1},{list:[3,4,5],name:2}]
+        // console.log(arr1.flatMap(item => item.name))
+
+        //.flat方法 将二维数组扁平化成一维数组
+
+        // ----------对象拓展
+        // - 对象简写
+        // let name = 'aaa'
+        // let obj = {
+        //     name  //相当于name：name
+        // }
+        // console.log(obj)
+
+        // - 属性名表达式
+        // name = 'aaa'
+        // let obj = {
+        //     [name]:'bbb'
+        // }
+        // console.log(obj)
+
+        //Object.assign 整合对象
+        // const obj1 = {
+        //     name:'aaa'
+        // }
+        // const obj2 = {
+        //     name:'bbb',
+        //     age: 100
+        // }
+        // const obj3 = {}
+        // Object.assign( obj3, obj1,obj2)  //obj2的name把obj1的name覆盖了
+        // console.log(obj3)
+
+        //Object.is判断两个值是否相等
+        // console.log(Object.is(123,123))   //true
+        // console.log(Object.is(0.1+0.2, 0.3)) //false 还得是Math.EPSILN
+
+        //-------------函数拓展
+        //箭头函数：没有arguments参数集合
+        
+        //所有函数形参位置可以写默认值
+        // function fn( a=10) {
+        //     console.log(a)
+        // }
+        // fn()
+        // fn(20)
+
+    </script>
+</body>
+</html>

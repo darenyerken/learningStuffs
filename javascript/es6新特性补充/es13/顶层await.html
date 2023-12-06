@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="module">
+        //await不再只能写在async函数中，可以在模块js的顶层直接使用 
+        function ajax( data) {
+            console.log('ajax-running')
+            return new Promise(function(resolve){
+                setTimeout(()=>{
+                    resolve( data)
+                },3000)
+            })
+        }
+        {
+            let res = await ajax( 'dataaaaa')
+            console.log(res)
+        }
+
+
+        console.log('同步代码') //这里被影响了
+    </script>
+</body>
+</html>

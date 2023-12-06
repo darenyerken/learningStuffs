@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //立即执行函数的作用是避免在多人开发中发生代码冲突
+        //    -let有块作用域和函数作用域，所以代码包在代码块中也可以
+        //    -var没有块作用域，所以代码要包在函数作用域中，也就是立即执行函数中
+        (function() {
+            let a = 1
+            console.log(a)
+        }());
+        //         注意立即执行函数前后的语句，解释器可能会加错分号从而报错--------------------------important
+        console.log('222')
+        (function() {
+            let a = 3
+            console.log(a)
+        }());
+    </script>
+</body>
+</html>

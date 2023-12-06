@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">按钮</button>
+    <ul>
+        <li id="l1">孙悟空</li>
+        <li id="l2">猪八戒</li>
+    </ul>
+    <ul id="list2">
+        <li id="l3">蜘蛛精</li>
+    </ul>
+    <script>
+        const l1 = document.getElementById('l1')
+        const list2 = document.getElementById('list2')
+        const btn = document.getElementById('btn')
+        btn.addEventListener('click', function() {
+            const newL1 = l1.cloneNode(true)  //html对象.cloneNode()复制节点但只复制节点本身（包括属性等），不复制子节点   传true参数可以复制子节点 ； 
+            newL1.id = 'newL1' //！ 当被复制节点有id时候，需要给复制节点新的id
+            list2.appendChild(newL1)
+        })
+    </script>
+</body>
+</html>

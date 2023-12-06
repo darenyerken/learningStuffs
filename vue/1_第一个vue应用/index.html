@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="box">
+        {{10+20}}
+        {{name}}
+    </div>
+    <script>
+        //vue2是基于 Object.defineProperty()来实现，vue3新添加了proxy代理为默认方式，如果浏览器不支持proxy就走Object那一套
+        var app = Vue.createApp({
+            data(){
+                return {
+                    name:"kerwin"
+                }
+            }
+        }).mount("#box")
+    </script>
+</body>
+</html>

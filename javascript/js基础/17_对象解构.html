@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const obj = {name:'孙悟空', age:500, gender:'男'}
+        // let {name, age, gender} = obj   //没毛病
+        let name, age, gender
+        ;({name, age, gender} = obj)  //        注意！语句开头的大括号会被解释为代码块，所以加上括号分号
+        console.log(name, age, gender)
+        //变量名一般要和属性名一致，想取别名就这么做
+        let {name:a, age:b, gender:c, address:d = '花果山'} = obj  //obj中无address，可以自己赋值
+        console.log(a, b, c, d)
+    </script>
+</body>
+</html>

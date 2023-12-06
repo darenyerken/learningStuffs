@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //四种script文档加载方式  加载时机第一个最早，最后一个最晚
+        // - 1.将script标签写到body最后  与外部引入js不兼容，body最后写的js会覆盖外部js
+        // - 2.以defer的形式引入外部script
+        // - 3.在head中的script标签中将代码包裹进document对象的DOMContentLoaded回调函数中
+        // - 4.在head中的script标签中将代码包裹进window.onload回调函数中
+            window.addEventListener("load", function () { 
+                const btn = document.querySelector('button')
+                alert('window.onload')
+            })
+
+            document.addEventListener("DOMContentLoaded", function () {
+                const btn = document.querySelector('button')
+                alert('document，DomContentLoaded')
+            })
+    </script>
+    <script defer src="4_.js"></script>
+</head>
+<body>
+    <button>点我一下</button>
+    <script>
+        const btn = document.querySelector('button')
+        alert('body最后的js')
+    </script>
+</body>
+</html>

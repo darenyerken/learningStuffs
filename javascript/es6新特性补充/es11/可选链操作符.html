@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //可选链操作符
+
+        // - 如下,当从后端返回一个人的地址下的城市，当location根本不存在，访问obj.location.city会报错
+        let obj = {
+            name:"kerwin",
+            introduction:0,
+            location:{
+                city:"dalian"
+            }
+        }
+        console.log(obj && obj.location && obj.location.city)  //以前用的解决办法
+        console.log(obj?.location?.city)  //现在的解决办法
+    </script>
+</body>
+</html>

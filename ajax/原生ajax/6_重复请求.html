@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #result {
+            width: 400px;
+            height: 200px;
+            border: 2px black solid;
+        }
+        #send {
+            position: absolute;
+            top: 100px;
+            left: 500px;
+        }
+    </style>
+</head>
+<body>
+    <button id="send">发送请求</button>
+    <div id="result"></div>
+
+    <script>
+        const send = document.querySelector('#send')
+        const result = document.querySelector('#result')
+
+        //用户反复点击导致请求冗余
+        let isSending = false
+        let xhr = null
+        send.addEventListener('click',function(){
+            if(!isSending) {
+                xhr = new XMLHttpRequest()
+                isSending = true // 发送请求了就不允许再发送
+                xhr.open('GET','http://127.0.0.1:8000/delay')
+                xhr.send()
+                xhr.onreadystatechange = function(){
+                    if( xhr.readyState === 4){
+                        isSending = false //服务器返回结果就可以重新发送 
+                        if( xhr.status >= 200 && xhr.status < 300) {
+                            result.innerHTML = xhr.response
+                            console.log(xhr.response)
+                        }
+                    }
+                }
+            }
+
+        })
+    </script>
+</body>
+</html>

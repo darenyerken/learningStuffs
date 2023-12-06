@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //工厂模式
+        // 在实例化用户时不需要关注内部逻辑，只需要传入一两个属性就可以根据属性赋予更多属性
+        // 一个调用者想创建一个对象，只要知道其名称就可以了
+        
+        //例如：某个新闻后台管理系统有三种不同有不同的权限，根据不同权限展示不同管理组件
+        // 新闻编辑： 首页，新闻撰写发布
+        // 用户：首页，人员管理，新闻撰写发布
+        // 超级用户： 首页，人员管理，权限管理，新闻撰写发布 
+
+        class User{
+            constructor( role, limit) {
+                this.role = role
+                this.limit = limit
+            }
+            static createUer( role){
+                switch( role) {
+                    case 'editor':
+                        return new User( 'editor',['home','newsEdit'])
+                        break
+                    case 'admin':
+                        return new User( 'admin',['home','newsEdit','manage'])
+                        break
+                    case 'superAdmin':
+                        return new User( 'superAdmin',['home','newsEdit','manege','limitManage'])
+                        break
+                    default:
+                        throw new Error('参数错误')
+                }
+            }
+        }
+
+        const a = User.createUer( 'admin')
+    </script>
+</body>
+</html>

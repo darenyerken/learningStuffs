@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .outer {
+            width: fit-content;
+            margin: 50px auto;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="outer">
+        <div class="img-wrapper">
+            <img src="images/1.png" alt="图片">
+        </div>
+        <button id="pre">上一张</button>
+        <button id="next">下一张</button>
+        <script>
+            const pre = document.getElementById('pre')
+            const next = document.getElementById('next')
+            const img = document.querySelector('img')
+            let i = 0
+            next.addEventListener('click', function(){
+                i++
+                img.setAttribute('src', `images/${Math.abs(5+i%5)%5+1}.png`)
+                console.log(img)
+            })
+            pre.addEventListener('click', function(){
+                i--
+                img.setAttribute('src', `images/${Math.abs(5+i%5)%5+1}.png`)
+                console.log(img)
+            })
+        </script>
+    </div>
+</body>
+</html>

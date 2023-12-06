@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box"></div>
+    <script>
+        //class类
+         class Person {
+            static count = 0
+            age
+            constructor( name) {
+                this.name = name
+            }
+            say() {
+                console.log('hello ' + this.name)
+            }
+            get html(){
+                return box.innerHTML
+            }
+            set html( data) {
+                box.innerHTML = data
+            }
+            get age() {
+                console.log('using get()')
+                return this.age
+            }
+            set age( data){
+                console.log('using set')
+                this.age = age
+            }
+         }
+         const p1 = new Person('Bob')
+         console.log(p1)
+         p1.html = 'dasda'
+         p1.age = 100
+         console.log(p1)
+         Person.count++
+         console.log(Person.count-1)
+
+         //class的继承 
+         class Student extends Person {
+            constructor( name, score) {
+                super( name)
+                this.score = score
+            }
+            say() {
+                super.say()
+                console.log('yeah ' + this.score)
+            }
+         }
+         const s1 = new Student( 'Jack' , 99)
+         console.log(s1)
+         s1.age = 15
+         console.log(s1)
+         console.log(Student.count)  //子类也继承父类的static属性，count创建时为0，后来变成1，student继承了1
+         Student.count++
+         console.log(Student.count)
+         console.log(Person.count)  //创建子类之后 父类和子类的count再无关系
+    </script>
+</body>
+</html>

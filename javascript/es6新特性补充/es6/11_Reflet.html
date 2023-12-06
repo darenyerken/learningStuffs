@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Reflet
+        // 1 - 代替Object使用其某些方法  更安全并且再次用defineProperty不会报错
+        // const obj = {name:'aaa'}
+        // Object.defineProperty(obj,'name',{
+        //     value:'ccc',
+        //     writable: false,   //设置不可改变
+        // })
+        // Reflect.defineProperty(obj,'name',{
+        //     value:'bbb',
+        //     writable: false,   //设置不可改变
+        // })
+        // console.log(obj)
+        // obj.name = 'ddd'
+        // console.log(obj)
+
+        // 2 -  Reflect.defineProperty返回true或者false
+        //      而Object.defineProperty不成功会报错
+
+        // 3 - 可以代替 'name' in obj;  delete obj.name 等不太合理的命令式语句
+        // const obj = {name:'aaa'}
+        // console.log(Reflect.has(obj , 'name'))
+        // console.log(Reflect.deleteProperty(obj, 'name'))
+        // console.log(obj)
+
+        //!!!!!!!!!!!!!最重要的用途
+        // 4- Reflect.set() get（）配合proxy使用来使得对象的方法走其默认行为
+        // const set = new Set()
+        // const setProxy = new Proxy( set,{
+        //     get( target, key) {
+        //         let a = Reflect.get( target, key)
+        //         if( a instanceof Function) {
+        //             console.log('proxy is doing')
+        //             return a.bind(target)    //这里只能用bind,因为bind不会让函数立即执行
+        //         }
+        //         return target[key]
+        //     },
+        //     set( target, key, value) {
+        //         return Reflect.set(...arguments)
+        //     }
+        // })
+        // setProxy.add(12)
+        // console.log(set)
+
+        //监视数组
+        const arr = [1,2,3]
+        const proxy = new Proxy(arr,{
+            set(target,key,value) {
+                console.log('set',  key, value)
+                return Reflect.set(...arguments)  //不用改变this对象等麻烦操作，直接走默认行为
+            },
+            get(target, key) {
+                console.log('get', key)
+                return Reflect.get( ...arguments)
+            }
+        })
+        proxy.push(4)
+        console.log(arr)
+    </script>
+</body>
+</html>

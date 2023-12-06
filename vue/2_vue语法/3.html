@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="box">
+        <input type="text" v-model="text">
+        {{text}}
+        <div v-html="text"></div>
+    </div>
+
+    <script>
+        //  v-model  input双向绑定
+        //  v-html  双大括号不会解析文本内容中的text变量中的的html标签，相当于innerText
+        //  - v-html 相当于innerHTML  解析html标签
+        const obj= {
+            data(){
+                return {
+                    text:''
+                }
+            }
+        }
+        Vue.createApp(obj).mount('#box')
+    </script>
+</body>
+</html>

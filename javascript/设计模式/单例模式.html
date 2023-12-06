@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 一个类只允许有一个实例对象，第一次创建后不会再创建而是返回第一次创建的实例对象
+        // - 应用一 ： 网页登录框。有时登录网页后过段时间会失效，需要再次登录，此时就不需要再创建一个对话框，而是把第一次登陆的对话框再拿出来
+
+        //es6方式
+        class SinglePattern {
+            constructor( name, age) {
+                if( !SinglePattern.instance) {
+                    this.name = name
+                    this.age = age
+                    SinglePattern.instance = this
+                } else {
+                    return SinglePattern.instance
+                }
+            }
+        }
+
+        const s1 = new SinglePattern( 'kerwin', 100)
+        const s2 = new SinglePattern( 'jack', 50)
+
+        //es5方式
+        const SinglePattern2 = (function( name, age) {
+            let instance
+            function User( name, age) {
+                this.name = name
+                this.age = age
+            }
+            return function ( name, age) {
+                if( instance == null) {
+                    instance = new User( name, age)
+                } 
+                return instance
+                
+            }
+        })()
+
+        const s3 = SinglePattern2( 'jack', 50)
+        const s4 = SinglePattern2( 'jack', 50)
+        console.log(s3)
+    </script>
+</body>
+</html>

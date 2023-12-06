@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const obj = {name:'孙悟空', age:500, gender:'男'}
+        let str = JSON.stringify(obj)  //对象转换JSON序列字符串 ， 数组也可以
+        console.log(str)
+        const obj2 = JSON.parse(str)   //JSON序列字符串转换对象 ， 数组也可以
+        console.log(obj2)
+        console.log(obj === obj2)
+        //JSON序列字符串
+        // - 作用：方便的和其他语言进行数据交换
+        // - 格式：1.用对象或者数组的形式转换  2.最外层用单引号包裹，内层的string用双引号
+        // - 能转换的类型： String、Number、Object、Array、Boolean、Null   其他例如undefined都不行
+        // - 注意事项：对象的最后一个属性或者方法后面不加逗号
+    </script>
+</body>
+</html>

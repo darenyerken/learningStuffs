@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //数组新增findLast和findLastIndex
+        let arr = [12,54,6,3,5,7,234,65,76]
+        let a = arr.findLast(ele=>ele<10)
+        console.log(a)
+
+        //try新增cause
+        // - 只能是cause不能改名字
+        function fn(){
+            try {
+                console.log(aaa)
+            } catch {
+                throw new Error('xxxxxxx',{cause:'aaa变量未定义'})
+            }
+        }
+
+        try {
+            fn()
+        } catch(err) {
+            console.log(err,err.cause)
+        }
+    </script>
+</body>
+</html>

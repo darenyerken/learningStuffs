@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //                ->Object类 ->Object实例的proto -》null
+        console.log(Object.__proto__.__proto__.__proto__)
+        const o1 = new Object()
+        //                ->o1的proto -》 null
+        console.log(o1.__proto__.__proto__)
+        //---------------------------------------------------
+        console.log('-----------------------------------------------------')
+        class Animal{
+            name
+            sayHello() {
+                console.log("Hello,im " + this.name)
+            }
+        }
+        //             ->Objec类 -》Object实例的proto -》 null
+        console.log(Animal.__proto__.__proto__.__proto__)
+        const a1 = new Animal()
+        //             ->a1的proto ->Object实例的proto -》 null
+        console.log(a1.__proto__.__proto__.__proto__)
+        //---------------------------------------------------------
+        console.log('-----------------------------------------------------')
+        class Cat extends Animal{
+            id
+        }        
+        //              -> animal类 -> Object类 -> Object实例的proto -> null
+        console.log(Cat.__proto__.__proto__.__proto__.__proto__)
+        const c1 = new Cat()
+        //              -> animal类的proto ->animal实例的proto -> Object类的proto -》 null
+        console.log(c1.__proto__.__proto__) 
+        //-----------------------------------------------------------------------
+        console.log('-----------------------------------------------------')
+        class BlackCat extends Cat {
+            adress
+        }
+        //                   ->Cat类 -> animal类 -》Objct -》 Object实例的proto -》 null
+        console.log(BlackCat.__proto__.__proto__.__proto__.__proto__.__proto__)
+        const b1 = new BlackCat()
+        //            -> Cat类的proto -> Animal类的proto -> animal实例的proto -> Object实例的proto -> null 
+        console.log(b1.__proto__.__proto__.__proto__.__proto__.__proto__)
+
+        console.log(b1.hasOwnProperty('name'))  //不推荐
+        console.log(Object.hasOwn(b1,'name'))  //推荐
+        console.log('name' in b1)
+        console.log(b1 instanceof Animal)
+
+        console.log('------------------------' + (BlackCat.prototype === b1.__proto__))
+        console.log(BlackCat.prototype , BlackCat.__proto__)
+    </script>
+</body>
+</html>

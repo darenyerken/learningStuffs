@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //call
+        // - 改变函数的this指向（箭头函数不行）
+        //apply
+        // - 改变函数的this指向（箭头函数不行）
+        function fn(a,b) {
+            console.log('fn执行',this)
+            console.log('a= ',a,' b= ',b)
+        }
+        const obj = {name:'孙悟空'}
+        fn(1,2)
+        fn.call( obj, 1, 2) //当函数有形参时，obj写最前面 
+        fn.call( 1, 2, obj)
+
+        console.log('----------------------------')
+        
+        fn.apply( obj, [1, 2]) //当函数有形参时，obj写最前面,实参用数组的方式传递
+
+        console.log('----------------------------------------')
+
+        //bind
+        // - 创建一个和原函数一样的新函数并1、绑定新函数的this指向2、绑定新函数的实参（之后再无法改变)
+        // - 不影响原函数
+        const fn2 = fn.bind(obj, 3, 4)
+        fn2(5,6)
+        fn2.call({name:'猪八戒'})
+
+        const fn3 = fn.bind()  //不给对象就是绑定window 
+        fn3()
+        fn3.call(obj)
+    </script>
+</body>
+</html>

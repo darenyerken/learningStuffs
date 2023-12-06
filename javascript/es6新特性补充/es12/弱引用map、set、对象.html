@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">like</button>
+    <script>
+        //js垃圾回收机制的回收方法之一：对堆中的引用类型，只要有引用就 标记+1，引用变量移除就-1，当标记为0就回收该引用类型
+
+        //弱引用map、set
+        // const map = new Map()
+        // let obj = {'name':'kerwin'} // {'name':'kerwin'}标记+1
+        // map.set(obj,'aaaa')  //此时map也强引用了obj，{'name':'kerwin'}标记+1
+        // obj = null  // {'name':'kerwin'} 标记-1
+        // console.log(map)
+        // console.log(map.obj)  //访问不到
+        // map.delete(obj)
+        // console.log(map)  //也删不掉，成了死数据
+        // console.log('-------------------------------')
+        // let obj2 = {'name':'kerwin'} // {'name':'kerwin'}标记+1
+        // const wmap = new WeakMap()
+        // wmap.set(obj2,'aaaa')  //此时wmap弱引用了obj，{'name':'kerwin'}标记不变
+        // console.log(wmap)
+        // obj2 = null  // {'name':'kerwin'} 标记-1  标记为零回收{'name':'kerwin'}
+        // console.log(wmap) 
+        // console.log(wmap.obj2) 
+        // wmap.delete(obj2)
+
+        // 弱引用对象 
+        // let obj3 = {name:'kerwinn'}
+        // let obj4 = new WeakRef(obj3)  //obj4不会对{name:'kerwinn'}强引用，标记不加1
+        // obj3 = null  //此时{name:'kerwinn'}会被回收
+
+        // ----
+        let wmap = new WeakMap()
+        let like = new WeakRef( document.getElementById('btn'))
+        wmap.set( like.deref(),{count:0})
+        setTimeout(()=>{
+            document.body.removeChild(like.deref())
+        },3000)
+    </script>
+</body>
+</html>

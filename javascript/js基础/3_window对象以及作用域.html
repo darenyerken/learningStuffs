@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        {
+            var a = 10   //用var声明的变量不具有块作用域 ， 但是有函数作用域  (let都有，比较安全)
+        }
+        // console.log(a)
+
+        function fn() {
+            var b = 20
+        }
+        // console.log(b)
+
+        //在全局中   用var声明的变量,直接声明的变量是window对象的属性(相当于window.c = 30,window.d = 40)，用function声明的函数是window对象的方法
+        var c = 30 
+        d = 40
+        function fn2() {
+            console.log('我也是window对象的方法')
+        }
+
+        //用let声明的变量不会储存在window对象的储存区域中，有其专属存储区域
+
+
+
+        //           变量的提升(预加载)
+        //               -var声明的变量他的声明会提升，值不会
+        console.log(aa)
+        var aa = 20
+
+        //               -let声明的变量也会提升，但赋值之前禁止访问
+        // console.log(bb)
+        let bb = 30
+
+        //           函数的提升
+        //               -function声明的函数会预加载  可以先使用再创建
+        fn3()
+        function fn3() {
+            console.log('我是先使用后创建的函数')
+        }
+
+        //底层逻辑是js解释器会在执行代码前先把变量和函数找出来为其预留空间（简单点说就是为了更合理的分配存储空间
+    </script>
+</body>
+</html>

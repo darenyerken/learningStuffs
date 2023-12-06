@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //Date
+        // - 日期类
+        const date = new Date()
+        console.log(date)  //获取完整时间
+        console.log(date.getFullYear())  //获取四位年份
+        console.log(date.getMonth()) //获取月份 0~11表示1到12月份
+        console.log(date.getDate())  //获取日
+        console.log(date.getDay()) // 获取周 0表示周天
+        console.log(date.getTime())  //获取 国际标准时间1970年1月1日 00:00:00 时刻至今的毫秒时间
+        console.log(Date.now())      //同上
+
+        //可以自行设置时间
+        const myBirthDay = new Date('2001/05/26')
+        console.log(myBirthDay)
+        const mBD = new Date(2001, 5-1, 26)
+        console.log(mBD)
+
+        //可以自行设置时间格式   注意格式用对象进行传递
+        console.log(date)
+        const result = date.toLocaleString('zh-cn',{
+            weekday: "long",
+            year: "numeric",
+            month: "long",
+            day: "numeric"
+        })
+        console.log(result)
+    </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="box">
+        <div :style="styleObj">box1:对象方式操作style</div>   
+        <div :style="styleArr">box2:数组方式操作style</div>
+    </div>
+
+    <script>
+        const obj = {
+            data() {
+                return {
+                    styleObj: {       //注意js写法
+                        width: '200px',       
+                        height: '200px',
+                        backgroundColor: 'blue',
+                        color: 'white'
+                    },
+                    styleArr: [     //注意数组中也要用对象方式操作css
+                        {
+                            width:'100px',
+                            height: '100px',
+                        },
+                        {
+                            backgroundColor: 'red',
+                            color: 'white'
+                        }
+                    ]
+                }
+            }
+        }
+        const app = Vue.createApp(obj).mount('#box')
+        app.styleArr.push({          //后来者会覆盖前面的
+            width: '300px',
+            height: '300px',
+            fontSize: '30px'
+        })
+    </script>
+</body>
+
+</html>

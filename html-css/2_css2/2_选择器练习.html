@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        * {
+            color: rgb(122, 70, 70);
+        }
+        h1 {
+            color: red;
+        }
+        .writer {
+            font-size: 10px;
+        }
+        #first {
+            color: orange;
+        }
+        /* ---------------------------------- */
+
+        .poem>p:nth-of-type(2) {
+            color: aquamarine;
+        }
+        div span {
+            color: black;
+        }
+        div hr+p {
+            color: blue;
+        }
+        div ul li::first-letter {
+            font-size: 20px;
+        }
+        div ul span {
+            color: red;
+        }
+        a:link {
+            color: orange;
+        }
+        a:visited {
+            color: brown;
+        }
+        a:hover {
+            color:red;
+            font-size: 30px;
+            text-decoration: none;
+        }
+        a:active {
+            color:blue;
+        }
+        [href] {
+            color: blueviolet;
+        }
+    </style>
+</head>
+<body>
+    <div class="poem">
+        <h1 class="title">静夜思</h1>
+        <h2 class="writer">唐·李白</h2>
+        <p class="sentence" id="first">床前明月光，</p>
+        <p class="sentence" id="second">疑是地上霜。</p>
+        <p class="sentence" id="third"><span id="favorite">举头望明月，</span></p>
+        <p class="sentence" id="forth">低头思故乡。</p>
+    </div>
+    <div>
+        <hr>
+        <div>Test</div>
+        <p class="rich">富豪张三</p>
+        <p class="star">明星李四</p>
+        <hr>
+        <div>
+            <ul>
+                <li>北京</li>
+                <li>武汉</li>
+                <li>
+                    <span>上海</span>
+                    <ol>
+                        <li>东方明珠</li>
+                        <li>迪士尼</li>
+                        <li>欢乐谷</li>
+                        <li><a href="https://www.baidu.com" target="_blank">百度信息</a></li>
+                    </ol>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

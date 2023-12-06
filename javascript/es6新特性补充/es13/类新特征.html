@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 1.属性可以写在constructor外了
+        // 2.类中可以写静态代码块会立即执行
+        // 3.类的私有属性和方法
+
+        class Person{
+            #name
+            getName() {
+                return this.name
+            }
+            #sayHello() {
+                console.log('hello')
+            }
+            static count = 0
+            static {
+                console.log(++this.count)
+            }
+        }
+    </script>
+</body>
+</html>

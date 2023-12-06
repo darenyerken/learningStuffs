@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        a:link {
+            color: black;
+        }
+        a:visited {
+            color: red;
+        }
+        a:hover {
+            color: orange;
+        }
+        a:active {
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <div>
+    <a href="https://cn.bing.com/?mkt=zh-CN&FORM=BEHPTB" target="_blank">新建页面打开bing</a>
+    <div>
+
+    <a href="https://www.baidu.com/" target="_self">当页打开百度</a>
+    <a href="../图片/奥特曼.jpg" target="_blank">奥特曼图片</a>
+    <!--a内可以包含除它自身以外的任何标签-->
+    <!--浏览器打不开的文件会下载下来-->
+
+    <!--进行下载的超链接-->
+    <a href="../图片/奥特曼.jpg" download=" 奥特曼图片">下载奥特曼图片</a>
+
+
+    <!--跳转锚点------------------------------------------------------------------------------- -->
+    <a href="#悟空">跳转到悟空</a>
+    <a href="#灰太狼">跳转到灰太狼</a>
+
+    <p>喜羊羊</p>
+    <img src="../图片/喜羊羊.jpg" alt="喜羊羊">
+
+    <p >灰太狼</p>
+    <!--id 是一个锚点-->
+    <img id="灰太狼" src="../图片/灰太狼.jpg" alt="灰太狼">
+
+    <!--锚点 a 标签里面有name-->
+    <a name="悟空"></a>
+    <p>孙悟空</p>
+    <img src="../图片/悟空.jpg" alt="悟空">
+
+    <p>完</p>
+
+    <a href="#">回到顶部</a>
+
+    <a href="">刷新页面</a>
+
+</body>
+</html>

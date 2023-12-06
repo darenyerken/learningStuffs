@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+        body {
+            background-image: linear-gradient(to right, yellow 70%, crimson 90%);
+        }
+        .container {
+            width: fit-content;
+            margin: 100px auto;
+            background-image: linear-gradient(to left,yellow 25%, crimson);
+            padding: 100px 100px;
+            border-radius: 30%;
+        }
+        /* #region table */
+        
+        table {
+            margin-bottom: 20px;
+
+            table-layout: fixed;
+            border-collapse: collapse;
+            border-radius: 8px;
+        }
+        th,td {
+            border: 2px black solid;
+            padding: 5px 20px;
+        }
+        table a {
+            text-decoration: none;
+            color: rgb(100, 100, 100);
+        }
+        table a:hover {
+            color: crimson;
+        }
+        /* #endregion */
+
+        /* #region add */
+         #add {
+            text-align: center;
+         }
+         #add div {
+            margin: 5px 0;
+         }
+         #add input {
+            background-color: yellow;
+         }
+         #add button {
+            background-color: yellow;
+            width: 3rem;
+            height: 1.5rem;
+            border-radius: 10px;
+            margin-top: 10px;
+         }
+        /* #endregion */
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <table>
+            <caption>员工信息</caption>
+            <tbody>
+                <tr>
+                    <th>姓名</th>
+                    <th>手机号</th>
+                    <th>薪资/￥</th>
+                    <th>操作</th>
+                </tr>
+                <tr>
+                    <td>孙悟空</td>
+                    <td>1111111111</td>
+                    <td>10000</td>
+                    <td><a href="javascript:;">删除</a></td>
+                </tr>
+                <tr>
+                    <td>猪八戒</td>
+                    <td>2222222222</td>
+                    <td>8000</td>
+                    <td><a href="javascript:;">删除</a></td>
+                </tr>
+                <tr>
+                    <td>沙和尚</td>
+                    <td>333333333</td>
+                    <td>20000</td>
+                    <td><a href="javascript:;">删除</a></td>
+                </tr>
+            </tbody>
+        </table>
+        <div id="add">
+            <div>
+                <span>姓名：&nbsp;&nbsp;&nbsp;</span><input id="name" type="text" placeholder="请输入姓名">
+            </div>
+            <div>
+                <span>手机号：</span><input id="phone" type="text" placeholder="请输入手机号">
+            </div>
+            <div>
+                <span>薪资：&nbsp;&nbsp;&nbsp;</span><input id="salary" type="text" placeholder="请输入每月薪资">
+            </div>
+            <button id="btn">添加</button>
+        </div>
+    </div>
+    <script>
+        //添加员工信息
+        const btn = document.querySelector('#btn')
+        const tbody = document.querySelector('tbody')
+        btn.addEventListener('click', function(){
+            
+            // const name = document.querySelector('#name')
+            // const phone = document.querySelector('#phone')
+            // const salary = document.querySelector('#salary')
+            // -----------这种方式有xss注入的风险------------!!!!!!!!!!
+            // tbody.insertAdjacentHTML('beforeend',`
+            //     <tr>
+            //         <td>${name.value}</td>
+            //         <td>${phone.value}</td>
+            //         <td>${salary.value}</td>
+            //         <td><a href="javascript:;">删除</a></td>
+            //     </tr>
+            // `)
+            const tr = document.createElement('tr')
+            tbody.appendChild(tr)
+            const name = document.createElement('td')
+            tr.appendChild(name)
+            const phone = document.createElement('td')
+            tr.appendChild(phone)
+            const salary = document.createElement('td')
+            tr.appendChild(salary)
+            const del = document.createElement('td')
+            tr.appendChild(del)
+            const delLink = document.createElement('a')
+            del.appendChild(delLink)
+            name.textContent = document.querySelector('#name').value
+            phone.textContent = document.querySelector('#phone').value
+            salary.textContent = document.querySelector('#salary').value
+            delLink.textContent = '删除'
+            delLink.href = 'javascript:;'
+            links[links.length- 1].onclick = delEmpInfo
+        })
+        //删除员工信息
+        function delEmpInfo() {
+            let emp = this.parentNode.parentNode
+            let empName = emp.firstElementChild.textContent
+            if( confirm(`你确定要删除员工【${empName}】的信息吗？`)) {
+                emp.remove()
+            }
+        }
+        const links = document.links
+        for(let i = 0; i < links.length; i++) {
+            // links[i].onclick = delEmpInfo
+            links[i].addEventListener('click', delEmpInfo)
+        }
+    </script>
+</body>
+</html>

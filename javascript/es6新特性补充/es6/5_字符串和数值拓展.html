@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //----------------字符串
+        //.repeat方法
+        // let name = '小孙'
+        // console.log(name.repeat(5))
+        // console.log(name.repeat(2.1))
+
+        //--------------数值
+        // - 不同进制表示法
+        // console.log(100)
+        // console.log(0b100)  //二进制
+        // console.log(0o100)  //八进制
+        // console.log(0x100)  //十六进制
+
+        // - isFinite 和 isNaN 两个全局方法会尝试对参数转型
+        // - 而 Number.isFinite 和 Number.isNaN 不会进行类型转换
+        // console.log(isNaN('asdas'))
+        // console.log(Number.isNaN('asdfds'))
+
+        // - Number.isInteger() 判断是否整数 只判断数值类型，不进行类型转换
+
+        // - 极小常量Number.EPSILON   //epsilon是数学符号ε
+        console.log(Number.EPSILON)
+        console.log(0.1 + 0.2 === 0.3)  //false
+        function equals( a, b) {
+            return a-b <= Number.EPSILON
+        }
+        console.log(equals(0.1,0.2))
+
+        // - Math.sign方法用来判断一个数到底是正数、负数、还是零。对于非数值，会先将其转换为数值
+
+    </script>
+</body>
+</html>

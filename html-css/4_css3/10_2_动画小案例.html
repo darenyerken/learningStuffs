@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        /* 蓝色背景 */
+        .road {
+            /* background-color: skyblue; */
+            position: relative;
+            overflow: hidden;
+            margin-top: 300px;
+            transform: rotateZ(-15deg);
+        }
+        /* 自行车小动画,利用背景图片和动画效果 */
+        .biker {
+            width: 130px;
+            height: 130px;
+            /* border: solid 1px orange; */
+            margin: 0 auto;
+            /* margin-top: 300px; */
+            background-image: url(../图片/bike.png);
+            animation: biker 500ms steps(31) infinite reverse;
+            transform-origin: 65px 260px;
+            transform:scaleX(-1) rotateZ(0deg);
+        }
+        @keyframes biker {
+            from {}
+            to {
+                background-position: 0px 4030px;
+            }
+        }
+
+        .wind {
+            width: 150%;
+            height: 128px;
+            /* border: solid 1px orange; */
+            position: absolute;
+            top: 0;
+            left: 0;
+            animation: wind 1.8s linear infinite;
+        }
+        .wind>pre {
+            float: right;
+        }
+        @keyframes wind {
+            from {}            
+            to {
+                left: -100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="road">
+        <div class="wind">
+            <pre>
+                                       ————                                                    
+                                                   ——————                                                    
+         
+                                                                             
+                                 ——
+                 
+   
+
+            </pre>
+        </div>
+        <div class="biker"></div>
+    </div>
+</body>
+</html>

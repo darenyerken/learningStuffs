@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //创建对象第一种
+        const obj = {
+            name: "孙悟空",
+            age: 1
+        }
+        //修改对象属性
+        obj.age = 500
+        //添加属性第一种
+        obj.adress = '花果山'
+        //添加属性第二种(特殊)
+        let str ='hobby'
+        obj[str] = 'banana' //属性名是hobby
+        // console.log(obj.hobby)
+        obj['hobby'] = 'apple'
+        // console.log(obj.hobby)
+        //删除属性
+        delete obj.hobby
+        
+        //创建对象第二种
+        let obj2 = Object()  //用了let可以改变变量的指向 ， 用const则不能改变指向
+        obj2 = obj //obj和obj2 都指向同一个对象
+        obj2.name = '猪八戒' //所以改变obj2的属性也是在改变obj的属性
+
+        //symbol、对象、函数也可以是对象中的属性
+        //属性名只能是字符串或者符号Symbol（）
+        //函数作为属性
+        const obj3 = {
+            add : function(x = 0, y = 0){
+                return x+y
+            }
+        }
+        // console.log(obj3.add(2,3))
+
+        //当symbol作为属性时，只能用当时存的symbol名来读取该属性（特殊）  通常是不希望外界访问的属性
+        let symbol = Symbol()
+        obj[symbol] = 101010
+
+        // console.log(obj[symbol])
+
+
+        //           二丶枚举属性：将对中的一般属性全部获取，比如symbol属性无法获取
+        for( propName in obj) {
+            console.log(propName + ' : ' + obj[propName])
+        }
+
+        //浅复制对象
+        // - const newObj = obj.assign()
+        //深复制
+        // - const newObj = obj.structuredClone()
+        // - const newObj = JSON.parse(JSON.stringify(obj))
+    </script>
+</body>
+</html>

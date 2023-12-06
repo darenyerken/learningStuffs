@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function jieCheng(num) {
+            if( num > 1) {
+                num = num * jieCheng(--num)
+            }
+            return num
+        }
+        console.log(jieCheng(10))
+
+        //1      2      3       4       5       6        7       8
+        //1      1      2       3       5       8        13      21
+
+        function rabit(month) {
+            let num = 1
+            if(month >= 3){
+                num = rabit(month - 1) + rabit(month - 2)
+                return num
+            } else {
+                return num
+            }
+        }
+        console.log(rabit(8))
+    </script>
+</body>
+</html>

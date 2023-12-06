@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+    <style>
+        
+    </style>
+</head>
+<body>
+    <div id="box">
+        <input type="text" v-model="inputText">
+        <button @click="add">add</button>
+        <ul>
+            <li v-for="item,index in memList">
+                {{item}}
+                <button @click="del(index)">del</button>
+            </li>
+        </ul>
+        <div v-show="memList.length === 0">暂无内容</div>
+    </div>
+    <script>
+        //v-model  与input的value双向绑定
+        const obj = {
+            data(){        //放属性
+                return {
+                    inputText:'',
+                    memList:['aaa','bbb','ccc']
+                }
+            },
+            methods:{      //放方法
+                add(){
+                    this.memList.push(this.inputText)
+                    this.inputText = ''
+                },
+                del(memIndex) {
+                    this.memList.splice(memIndex,1)
+                }
+            }
+        }
+        //app就是#box这个dom元素的proxy 
+        Vue.createApp(obj).mount("#box")
+    </script>
+</body>
+</html>

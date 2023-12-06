@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #result {
+            width: 400px;
+            height: 200px;
+            border: 2px black solid;
+        }
+        #send {
+            position: absolute;
+            top: 100px;
+            left: 500px;
+        }
+        #cancel {
+            position: absolute;
+            top: 130px;
+            left: 500px;
+        }
+    </style>
+</head>
+<body>
+    <button id="cancel">取消请求</button>
+    <button id="send">发送请求</button>
+    <div id="result"></div>
+
+    <script>
+        const send = document.querySelector('#send')
+        const result = document.querySelector('#result')
+
+        //可以用xhr.abort()取消请求
+        let xhr = null
+        send.addEventListener('click',function(){
+            xhr = new XMLHttpRequest()
+            xhr.open('GET','http://127.0.0.1:8000/delay')
+            xhr.send()
+            xhr.onreadystatechange = function(){
+                if( xhr.readyState === 4){
+                    if( xhr.status >= 200 && xhr.status < 300) {
+                        result.innerHTML = xhr.response
+                        console.log(xhr.response)
+                    }
+                }
+            }
+
+        })
+        const cancel = document.querySelector('#cancel')
+        cancel.onclick = function() {
+            xhr.abort()  //立即取消请求
+        }
+    </script>
+</body>
+</html>

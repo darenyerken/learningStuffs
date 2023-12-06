@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-image: url(bg3.jpg); background-size: cover;">
+    <script>
+        //字典结构
+        // - 键值对结构
+
+        //es6中的map：对象丢失会导致僵尸键占用内存 
+        //es6中的WeakMap：只能以对象为键，对象无引用变量了就自动删除
+        //另设置节点存放原始键
+        class TablePair {
+            constructor( key, value) {
+                this.key = key
+                this.value = value
+            }
+        }
+        class MyMap { 
+            #table = {}
+
+            toStr( item) {
+                if( item === null) {
+                    return 'null'
+                } else if( item === undefined) {
+                    return 'undefined'
+                } else if(typeof item === 'string' || item instanceof String){
+                    return item
+                } else {
+                    return JSON.stringify( item)
+                }
+            }
+
+            set( key, value){
+                if( key != null && value != null) {
+                    const pair = new TablePair( key, value)
+                    this.#table[this.toStr( key)] = pair
+                    return true
+                } else return false
+            }
+
+            get( key){
+                if( this.hasKey(key)) {
+                    return this.#table[this.toStr(key)].value
+                } return undefined
+            }
+
+            remove( key) {
+                if( this.hasKey(key)) {
+                    delete this.#table[this.toStr(key)]
+                } return false
+            }
+
+            hasKey( key) {
+                if( key != null) {
+                    return this.#table[this.toStr(key)] != null
+                } return false
+            }
+
+            keys() {
+                return this.keyValues().map( tablePair=> tablePair.key)
+            }
+
+            values() {
+                return this.keyValues().map( tablePair=> tablePair.value)
+            }
+
+            keyValues() {
+                return Object.values( this.#table)
+            }
+
+            size() {
+                return this.keys().length
+            }
+
+            isEmpty() {
+                return this.size() === 0
+            }
+
+            forEach( fn) {
+                const tablePair = this.keyValues()
+                for( let i = 0; i < tablePair.length; i++) {
+                    fn( tablePair[i].key, tablePair[i].value)
+                }
+            }
+        }
+
+        const mm = new MyMap()
+        mm.set( {a:1}, 'a1')
+        mm.set( 'name', 'ronaldo')
+
+    </script>
+</body>
+</html>

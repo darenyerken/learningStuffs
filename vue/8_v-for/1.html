@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <!-- v-for 和 v-if不能写在同一个标签内 -->
+    <!-- 例如只显示特定状态的list -->
+    <div id="box">
+        <ul>
+            <template v-for="{title,status} in shopList">
+                <li v-if="status === 0">
+                    {{title}}
+                    
+                </li>
+            </template>
+        </ul>
+    </div>
+
+    <script>
+        const obj = {
+            data() {
+                return {
+                    shopList:[
+                        {
+                            title:'华为手机',
+                            status:0
+                        },
+                        {
+                            title:'耐克上衣',
+                            status:3
+                        },
+                        {
+                            title:'零食包',
+                            status:2
+                        }
+                    ]
+                }
+            },
+            methods:{
+
+            }
+        }
+        const app = Vue.createApp(obj).mount('#box')
+    </script>
+</body>
+
+</html>

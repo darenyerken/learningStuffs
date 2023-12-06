@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <!-- v-if切换开销大，反复创建删除 -->
+    <!-- v-show初始渲染开销大，但适合切换 -->
+    <div id="box">
+        <ul>
+            <li v-for="item in shopList">
+                商品名：{{item.title}}
+                <div v-if="item.status === 0">
+                    商品状态：待付款 
+                </div>
+                <div v-else-if="item.status === 1">
+                    商品状态：已付款 
+                </div>
+                <div v-else>
+                    商品状态：运输中 
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        const obj = {
+            data() {
+                return {
+                    shopList:[
+                        {
+                            title:'华为手机',
+                            status:0
+                        },
+                        {
+                            title:'耐克上衣',
+                            status:3
+                        },
+                        {
+                            title:'零食包',
+                            status:2
+                        }
+                    ]
+                }
+            },
+            methods:{
+
+            }
+        }
+        const app = Vue.createApp(obj).mount('#box')
+    </script>
+</body>
+
+</html>

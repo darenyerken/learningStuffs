@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    /* 清除默认样式start */
+    * { 
+        font-family: Arial; 
+        font-size: 14px; 
+        margin: 0; 
+        padding: 0; 
+        border: none; 
+    }
+    a { text-decoration: none; }
+    ul { list-style: none; }
+    /* 清楚默认样式end */
+
+    /* 设置背景铺满body */
+    body {
+        height: 100vh;
+        background-image: url(./案例练习资源/bg.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    
+    /* #region头部样式 */
+    .page-header {
+        height: 70px;
+        background-color: rgba(0, 0, 0, 0.7);
+        padding: 0px 20px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .page-header .nav {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+    .page-header .nav li {
+        height: 40px;
+        line-height: 40px;
+        border: 1px solid white;
+        border-radius: 8px;
+        padding: 0 10px;
+        margin: 0 20px;
+    }
+    .page-header .nav li:last-child {
+        margin-right: 0;
+    }
+    .page-header .nav a {
+        font-size: 20px;
+        color: white;
+    }
+    /* #endregion头部样式end */
+
+    /* #region主要内容样式 */
+    .page-content {
+        height: calc(100vh - 70px);
+        display: flex;
+    }
+    /* 导航框架 */
+    .page-content .nav {
+        width: 1000px;
+        height: 300px;
+        margin: auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+    /* 导航项 */
+    .page-content .nav .item{
+        width: 180px;
+        height: 200px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        border-radius: 8px;
+        
+        /* 鼠标悬浮过渡 */
+        transition: all 0.2s;
+    }
+    /* 鼠标悬浮变换 */
+    .page-content .nav .item:hover {
+        transform: scale(1.02);
+        box-shadow: 0 0 20px black;
+    }
+    /* 导航项单独设置背景 */
+    .page-content .nav .item:nth-child(1) {
+        background-color: #595CA8;
+    }
+    .page-content .nav .item:nth-child(2) {
+        background-color: #FF9D2E;
+    }
+    .page-content .nav .item:nth-child(3) {
+        background-color: #01A6DE;
+    }
+    .page-content .nav .item:nth-child(4) {
+        background-color: #015E91;
+    }
+    .page-content .nav .item:nth-child(5) {
+        background-color: #1DC128;
+    }
+    /* 导航项文字 */
+    .page-content .nav span {
+        color: white;
+        font-size: 18px;
+    }
+    /* #endregion主要内容样式 */
+
+    </style>
+</head>
+<body>
+    <!-- 头部 -->
+    <header class="page-header">
+        <!-- logo -->
+        <img src="./案例练习资源/logo.png" alt="logo">
+        <!-- 右侧导航 -->
+        <ul class="nav">
+            <li><a href="#">国内校区</a></li>
+            <li><a href="#">德国校区</a></li>
+            <li><a href="#">非洲校区</a></li>
+            <li><a href="#">美国校区</a></li>
+        </ul>
+    </header>
+    <!-- 主要内容 -->
+    <div class="page-content">
+        <!-- 导航项框架 -->
+        <div class="nav">
+            <!-- 导航项 -->
+            <a href="#" class="item">
+                <img src="./案例练习资源/item1.png">
+                <span>我的邮箱</span>
+            </a>
+            <a href="#" class="item">
+                <img src="./案例练习资源/item2.png">
+                <span>云服务</span>
+            </a>
+            <a href="#" class="item">
+                <img src="./案例练习资源/item3.png">
+                <span>手机课堂</span>
+            </a>
+            <a href="#" class="item">
+                <img src="./案例练习资源/item4.png">
+                <span>微信服务</span>
+            </a>
+            <a href="#" class="item">
+                <img src="./案例练习资源/item5.png">
+                <span>在线客服</span>
+            </a>
+        </div>
+    </div>
+</body>
+</html>
+<!--                            calc() 里面写数学公式                             -->

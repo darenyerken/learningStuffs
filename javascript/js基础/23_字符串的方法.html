@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let result
+        let str = '  a bcdejjfsa_0ASFD,hello       '
+        let str2 = '123456'
+        let str3 = 'abcdef'
+        // - 字符串底层是字符数组，所以很多数组的方法字符串都可以用
+        result = str.slice(5,8)  //截取字符串
+        result = str.indexOf('hello', 0)  //从头往后获取索引  无返回-1
+        result = str.lastIndexOf('hello')  //从后往前，同上
+        result = str.length  //字符串长度
+        result = str.at(-10)  //按索引获取字符
+        result = str.startsWith('a',2)  //索引位置2是否以'a'开头
+        result = str.endsWith('hello       ')   //字符串是否以'hello     '  结尾
+        result = str2.concat(str3)  //连接两个字符串
+        result = str.includes('hello') //检查是否包含某段字符串
+        result = str.padStart(50,'0') //检查字符串是否够50位，不够在前面补零
+        result = str.padEnd(50,'0')  // ~,不够在后面补零
+        result = str.trim()  //将字符串前后的空格消除
+        result = str.trimEnd()
+        result = str.trimStart()
+        result = str.toUpperCase() //全换成大写
+        result = str.toLowerCase()  //全换成小写 
+        //以下五个方法支持正则表达式
+        result = str.replace('hello', '123') //将内容 'hello' 换成 '123'  ,可以使用正则表达式
+        result = str.replaceAll('e','E') 
+        result = result.split('6')  //从给定字符处将字符串分段，有几个分几次，以一个数组中不同元素形式返回结果  支持正则表达式
+        result = str.match(/a/g)  //支持正则表达式 , 当匹配模式为g并且有多个目标时，返回每个目标为一个元素的数组
+        result = str.match(/a/)  //匹配模式不为g时，与exec()一致
+        result = str.matchAll(/a/g)   //匹配模式必须为g，返回一个迭代器需要用forof访问，格式与exec一样
+        result = str.search(/a/)   //支持正则表达式的indexOf()
+        // result = str.slice(str.indexOf('hello'), str.indexOf('hello')+5).toUpperCase().split('E').join('@')  //简单复合一下
+        
+        console.log(result)
+
+    </script>
+</body>
+</html>

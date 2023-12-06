@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-image: url(bg3.jpg); background-size: cover;">
+    <script>
+        // 最长公共子序列
+        // - 找出两个字符 串序列的最长子序列的长度。
+        // - 最长子序列是指，在两个字符串序列中以相同顺序出现，
+        // - 但不要求 连续（非字符串子串）的字符串序列。
+        
+        function LCS( str1, str2, result) {
+            if( str1 && str2) {
+                const str1Length = str1.length
+                const str2Length = str2.length
+                const LCSarr = [new Array(str2Length + 1).fill(0)]
+                for( let i = 1; i <= str1Length; i++) {
+                    LCSarr.push([...new Array(str2Length + 1).fill(0)])
+                    for( let j = 1; j <= str2Length; j++) {
+                        if( str1[i-1] === str2[j-1]) {
+                            LCSarr[i][j] = LCSarr[i-1][j-1] + 1
+                        } else {
+                            LCSarr[i][j] = LCSarr[i-1][j] > LCSarr[i][j-1]?
+                            LCSarr[i-1][j]:LCSarr[i][j-1]
+                        }
+                    }
+                }
+                result.arr = LCSarr
+                result.length = LCSarr[str1Length][str2Length]
+                let set = new Set()
+                for( let i = 2**Math.ceil((str1Length < str2Length?str1Length:str2Length)/2); i >= 0; i--) {
+                    result.sequences[i]=''
+                    findLCS( LCSarr, str1, str2, i, result.sequences)
+                    set.add(result.sequences[i])
+                }
+                result.sequences = [...set]
+            }
+        }
+        function findLCS( arr, str1, str2,i,result) {
+            const m = str1.length
+            const n = str2.length
+            if(str1.length === 0 || str2.length === 0) {
+                return ''
+            }
+            if( str1[m-1] === str2[n-1]) {
+                findLCS( arr, str1.slice(0,m-1), str2.slice(0,n-1),i,result)
+                result[i] += (str1[m-1])
+            } else {
+                if( arr[m-1][n] === arr[m][n] && arr[m][n-1] === arr[m][n]) {
+                    let binary = Math.floor(Math.random()*2)
+                    if( binary === 0) {
+                        findLCS( arr, str1.slice(0,m-1), str2,i,result)
+                    } else if( binary === 1){
+                        findLCS( arr, str1, str2.slice(0, n-1),i,result)
+                    }
+                } else if( arr[m-1][n] === arr[m][n]) {
+                    findLCS( arr, str1.slice(0,m-1), str2,i,result)
+                } else  if( arr[m][n-1] === arr[m][n]) {
+                    findLCS( arr, str1, str2.slice(0, n-1),i,result)
+                }
+            }
+        }
+            
+        const str1 = 'abcdefhg'
+        const str2 = 'badcfegh'
+        const LCSresult = {arr:[],length:0,sequences:[]}
+        LCS(str1,str2, LCSresult)
+        console.log(LCSresult)
+    </script>
+</body>
+</html>

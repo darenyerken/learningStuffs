@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-image: url(bg3.jpg); background-size: cover;">
+    <script>
+        //队列
+        // - 特点：先进先出
+        // - 队列如果用数组为底层结构，在进行unshif操作时数组后面每一位都会往前移一位，性能差，所以直接用对象作为底层结构
+        class Queue{
+            #items = {}
+            #count = 0
+            #head = 0
+
+            //进队列
+            enQueue( data) {
+                this.#items[this.#count] = data
+                if(this.#items[this.#count] === data) {
+                    this.#count++
+                    return true
+                } else {
+                    return false
+                }
+            }
+
+            // 出队列
+            outQueue() {
+                if( this.size() === 0) return undefined
+                let data = this.#items[this.#head]
+                delete this.#items[this.#head]
+                this.#head++
+                return data
+            }
+
+            // 返回队列长度
+            size() {
+                return this.#count - this.#head
+            }
+
+            //判断队列是否为空
+            isEmpty() {
+                return this.size() ===0 ? false : true
+            }
+
+            //查看队首
+            peek() {
+                return this.#items[this.#head]
+            }
+
+            //清空队列
+            clear() {
+                this.#items = {}
+                this.#count = 0
+                this.#head = 0
+            }
+
+            //dddd 
+            toString() {
+                let str = ''
+                for( let i = this.#head; i < this.#count; i++) {
+                    str += this.#items[i].toString() + ' '
+                }
+                return str.trimEnd()
+            }
+        }
+
+        // const q1 = new Queue()
+        // q1.enQueue('孙悟空')
+        // q1.enQueue('猪八戒')
+
+        // - 队列应用一 ： 击鼓传花
+        game(['A','B','C','D','E'],7)  //ABCDE从A开始击鼓传花 每次敲7下,敲一下传给下一个人 ，击鼓停止时持花的人被淘汰直到剩下最后一个人
+        function game(list, counter) {
+            const queue = new Queue()
+            for( let i = 0; i < list.length; i++) {
+                queue.enQueue(list[i])
+            }
+            while( queue.size() > 1) {
+            for( let i = 0; i < counter; i++) {
+                queue.enQueue(queue.outQueue())
+            }
+                console.log(queue.outQueue() + ' 被淘汰了')
+            }
+            console.log(queue.outQueue() + ' 是胜利者')
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //当绑定对象被销毁时触发一段代码
+        let obj = {name:'kerwin'}
+        let reg = new FinalizationRegistry(data=>{
+            console.log(data, ' 被销毁了')
+        })
+        reg.register(obj, 'obj')
+        obj = null
+        let arr1 = new Array(1000*1024*1024)
+        let arr2 = new Array(1000*1024*1024)
+        let arr3 = new Array(1000*1024*1024)
+        let arr4 = new Array(1000*1024*1024)
+        let arr5 = new Array(1000*1024*1024)
+        let arr6 = new Array(1000*1024*1024)
+        let arr7 = new Array(1000*1024*1024)
+        let arr8 = new Array(1000*1024*1024)
+        let arr9 = new Array(1000*1024*1024)
+        let arr10 = new Array(1000*1024*1024)
+        let arr11 = new Array(1000*1024*1024)
+        let arr12 = new Array(1000*1024*1024)
+        let arr13 = new Array(1000*1024*1024)
+        let arr14 = new Array(1000*1024*1024)
+        let arr15 = new Array(1000*1024*1024)
+        let arr16 = new Array(1000*1024*1024)
+        let arr17 = new Array(1000*1024*1024)
+    
+        console.log(arr1)
+        //不管多少个arr，25秒左右过后会回收obj，页面刷新不会重置垃圾回收计时起始时间
+    </script>
+</body>
+</html>

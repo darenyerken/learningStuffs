@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Object.fromEntries ： 将二维数组键值对转换成对象
+        const arr = [['name','kerwin'],['age',100]]
+        const obj = Object.fromEntries(arr)
+        console.log(arr) //不影响原对象
+        console.log(obj)
+
+        // 用处二  转换map
+        const map = new Map()
+        map.set('name','kerwin')
+        map.set('age',100)
+        const obj2 = Object.fromEntries( map)
+        console.log(obj2)
+
+        //用处三  配合Object.entries操作对象
+        let obj3 = {
+            A:['大连','成都','上海'],
+            B:['广州','深圳'],
+            C:['哈尔滨']
+        }
+        // 统计每个类型城市数量 将obj3转换过来
+        const newArr = Object.entries(obj3)
+        console.log(newArr)
+        obj3 = Object.fromEntries(newArr.map(([key,value])=> [key,value.length]))  //利用解构赋值特性
+        console.log(obj3)
+
+    </script>
+</body>
+</html>

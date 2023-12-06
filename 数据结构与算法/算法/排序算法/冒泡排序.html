@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-image: url(bg3.jpg); background-size: cover;">
+    <script>
+        //冒泡排序
+        function swap( arr, a, b) {
+            let temp = arr[a]
+            arr[a] = arr[b]
+            arr[b] = temp
+        }
+
+        function bubbleSort( arr) {
+            for( let i = 0; i < arr.length-1; i++)
+                for( let j = 0;j < arr.length-1-i; j++) {
+                    if( arr[j] > arr[j+1]) {    // <-----------冒泡排序特点
+                        swap(arr, j, j+1)
+                    }
+                }
+        }
+
+        let arr = [5,2,3,4,1,123,54,1234,7,34,1,0]
+        console.log(bubbleSort(arr))
+    </script>
+</body>
+</html>

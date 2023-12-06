@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+    <style>
+        li {
+            cursor: pointer;
+        }
+        .red {
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <ul>
+            <li v-for="item,index in memList" :class="current === index?'red':''" @click="clickLi(index)">
+                {{item}}
+            </li>
+        </ul>
+    </div>
+    <script>
+        //v-model  与input的value双向绑定
+        const obj = {
+            data(){        //放属性
+                return {
+                    memList:['aaa','bbb','ccc'],
+                    current:null
+                }
+            },
+            methods:{      //放方法
+                clickLi( index) {
+                    this.current = index
+                }
+            }
+        }
+        //app就是#box这个dom元素的proxy 
+        Vue.createApp(obj).mount("#box")
+    </script>
+</body>
+</html>

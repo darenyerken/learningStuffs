@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let a = false
+        let b = 76
+        // a &&= b  
+        // a ||= b 
+        a ??= b
+        console.log(a)
+
+        let obj = {
+            name:'kerwin'
+        }
+        // obj.introduction = obj.introduction ?? '很懒'
+        obj.introduction ??= '很懒'
+        console.log(obj.introduction)
+
+        // 只考虑a：
+        // a &&= b 当a存在的时候(a为真)赋值b给a
+        // a ||= b 当a不存在（a为假）时候赋值b给a
+        // a ??= b 当a为null或者undefined时赋值b给a
+    </script>
+</body>
+</html>

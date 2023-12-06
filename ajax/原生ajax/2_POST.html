@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #result {
+            width: 400px;
+            height: 200px;
+            border: 2px black solid;
+        }
+    </style>
+</head>
+<body>
+    <button id="btn">点击发送请求</button>
+    <div id="result"></div>
+
+    <script>
+        const btn = document.querySelector('#btn')
+        const result = document.querySelector('#result')
+        btn.addEventListener('click',function(){
+            // 1.创建对象
+            const xhr = new XMLHttpRequest()
+            // 2.初始化  设置请求方式和url
+            xhr.open('POST','http://127.0.0.1:8000/server')
+            // 2-1.可以在发送请求之前设置请求头信息
+            // - 一般在这里发送用户信息等内容
+            xhr.setRequestHeader('phone','11223344')
+            // 3.发送请求
+            // - POST 请求中请求体写这里
+            xhr.send()
+            // 4.时间绑定，处理服务端返回结果
+            // - readyState表示当球请求状态 
+            // - 0：未初始化状态
+            // - 1：已经初始化
+            // - 2：已发送请求
+            // - 3：服务器部分响应
+            // - 4：已完整收到服务器响应结果
+            xhr.onreadystatechange = function(){
+                if( xhr.readyState === 4){
+                    // 响应报文：
+                    // console.log(xhr.status) //状态码
+                    // console.log(xhr.statusText) //状态字符串
+                    // console.log(xhr.getAllResponseHeaders()) //所有响应头
+                    // console.log(xhr.response) //响应体
+                    // 状态码 200 404 403 401 500
+                    // 200<=状态码<300 都表示成功
+                    if( xhr.status >= 200 && xhr.status < 300) {
+                        result.innerHTML = xhr.response
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

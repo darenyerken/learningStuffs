@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //map
+        // - 以键值对存储数据
+        // - 特点: 任何类型都可以是键 甚至NaN  （对象只用字符串和符号作为属性名）
+        // - map.set(键) 设置键值对
+        // - map.get(键)   获取键值对 
+        // - map.size  获取键值对的数量
+        // - map.delete(键)  删除指定键值对
+        // - map.clear()  清空map
+        // - map.keys()   获取所有键
+        // - map.values()   获取所有值
+        // - map.has(键)  检查map中是否有该数据
+        // - forof 和 forEach可以遍历map ； forof和forEach遍历中对键值赋值无法改变原map ；forEach形参中key和value位置是反的
+        // - 读取map中的键值对以一个一个小数组的形式展现
+        // - map和数组可以互相转换，map会转换成二维数组，每个键值对转换成小数组
+
+        const map = new Map()   //创建一个map
+        map.set('name', '孙悟空 ')
+        const obj = {}
+        function fn(){}
+        map.set(obj, fn)
+        console.log(map.get(obj))
+
+        console.log(map.keys())
+
+        for( let [key, value] of map) {
+            key = 0
+            console.log(key, '=>', value)
+        }
+        // map.forEach((value, key) => {
+        //     key = 0
+        //     console.log(key + ' => ' + value)
+        // });
+        console.log(map)
+
+        const arr = [ ...map]
+        console.log(arr)
+        const arr2 = Array.from(map)
+        console.log(arr2)
+
+    </script>
+</body>
+</html>

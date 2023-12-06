@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin="anonymous" src="https://cdn.bootcdn.net/ajax/libs/axios/1.5.0/axios.js"></script>
+</head>
+<body>
+    <button>GET</button>
+    <button>POST</button>
+    <button>AJAX</button>
+
+    <script>
+        const btn = document.querySelectorAll('button')
+        //可以先设置baseURL
+        axios.defaults.baseURL = 'http://127.0.0.1:8000'
+        //GET
+        btn[0].onclick = function() {
+
+                //get请求 
+                axios.get('/axios',{ 
+                    //设置参数 
+                    params: {  
+                        a:100,
+                        b:'bbbbb'
+                    },
+                    //设置请求头信息
+                    headers: {
+                        name:'jack',
+                        phone:11223344
+                    }
+                }).then(res=>{
+                    console.log(res)
+                }).catch(res=>{
+                    console.log(res)
+                })
+        }
+       
+        //POST
+        btn[1].onclick = function() {
+                //post请求 
+                // - 注意post请求参数格式和get不一样              !!!!!!!!!!!!!!!!!
+                axios.post('/axios',
+                {             //请求体内容
+                    username:'adim',
+                    password:11223344
+                },
+                { 
+                    //设置参数 
+                    params: {  
+                        a:100,
+                        b:'bbbbb'
+                    },
+                    //设置请求头信息
+                    headers: {
+                        name:'jack',
+                        phone:11223344
+                    }
+                }).then(res=>{
+                    console.log(res)
+                }).catch(res=>{
+                    console.log(res)
+                })
+        }
+    
+        //函数方法
+        btn[2].onclick = function() {
+            axios({
+                method:'POST',
+                url:'/axios',
+                params: {
+                    vip:10,
+                    level:100
+                },
+                headers: {
+                    name:'Thomas',
+                    age:100
+                },
+                data: {
+                    username:'ADDMIN',
+                    pw:'asd111'
+                }
+            }).then(res=>{
+                //状态码
+                console.log(res.status)
+                //状态码字符串
+                console.log(res.statusText)
+                //响应头信息
+                console.log(res.headers)
+                //响应体体内容
+                console.log(res.data)
+            })
+        }
+    </script>
+</body>
+</html>

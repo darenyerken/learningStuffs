@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //-----------------------------面向对象思想：所有的都是对象，window对象，数组对象，Number对.....操作这个对象就是控制这个事物
+        class Person {
+            #name
+            #age = 18
+            #address = "earth"
+            constructor( name, age, address) {
+                this.#name = name
+                this.#age = age
+                this.#address = address
+            }
+            sayHello() {
+                console.log("Hello,im " + this.#name)
+            }
+            get name(){
+                return this.#name
+            }
+            get age(){
+                return this.#age
+            }
+            get age(){
+                return this.#age
+            }
+        }
+        const p1 = new Person("张鸡美","25","啄啄小区")
+        p1.sayHello()
+        console.log(p1.name)
+
+        class Student extends Person {
+            #sid
+            constructor( name, age, address, sid){
+                super(name,age,address)
+                this.#sid = sid
+            }
+        }
+        const s1 = new Student('里斯','12','锦云小区')
+        s1.sayHello()
+        console.log(s1.name)
+    </script>
+</body>
+</html>
