@@ -1,7 +1,8 @@
 <template>
-    <div>
-        <h2>Child</h2>
-        {{ aaa?.from }}
+    <div id="child">
+        <h2 @click="toFatherByEmit">Child</h2>
+        test-inject:{{ aaa?.from }}
+        <p>test-props:{{ title}}</p>
     </div>
 </template>
 <script setup lang='ts'>
@@ -15,15 +16,34 @@ type fromfather = {
     from:string
 }
 const aaa = inject<fromfather>('fromApp')
-console.log(aaa);
+console.log('test-inject: ',aaa);
 
-// 暴露给父亲
+// 暴露到组件外
 const bbb = ref('im from child')
 defineExpose({
     bbb
 })
 
+// props
+// const props = defineProps({
+//     title:String
+// })
+const props = defineProps<{
+    title:string
+}>()
+props
+// emit
+const emit = defineEmits<{
+    (e:string,val:string):void
+}>()
+const toFatherByEmit = () => {
+    emit('event','from-child-emit')
+}
+
+
 </script>
 <style scoped>
-
+#child {
+    background-color: #ddd;
+}
 </style>
