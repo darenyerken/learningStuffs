@@ -5,22 +5,25 @@
                 <div @click="toCity">{{ store.city.name }}</div>
             </template>
         </van-nav-bar>
-        <select v-model="keyword" id="a">
+        <select v-model="keyword" id="a" style="width: 100%; text-align: center; height: 30px;">
             <option :value="0">App订票</option>
             <option :value="1">前台订票</option>
         </select>
-        <ul>                   <!--调用vuexgetters方法并传递参数-->
-            <li v-for="cinema in store.filtedCinemaList(keyword)" :key="cinema.id">
-                {{ cinema.name }}
-            </li>
-        </ul>
+        <van-list> 
+                        <!--调用vuexgetters方法并传递参数-->
+            <van-cell v-for="cinema in store.filtedCinemaList(keyword)" :key="cinema.id"
+                :title="cinema.name"
+            >
+                {{ (cinema.longitude).toFixed(3)+'km' }}
+            </van-cell>
+        </van-list>
     </div>
 </template>
 <script setup>
 // import { onBeforeRouteLeave } from 'vue-router';
 import useCinemaStore from '../store/cinemaSrore'
-import { onBeforeMount, ref} from 'vue'
-import { NavBar as vanNavBar} from 'vant';
+import { onBeforeMount, ref } from 'vue'
+import { NavBar as vanNavBar, List as VanList, Cell as VanCell } from 'vant';
 import { useRouter } from 'vue-router';
 
 const store = useCinemaStore()
@@ -28,9 +31,9 @@ const keyword = ref(0)
 const router = useRouter()
 
 // 判断store中影院信息是否为空
-onBeforeMount(()=> {
+onBeforeMount(() => {
     // 判断状态中的电影院列表是否为空
-    if( store.cinemaList.length === 0) {
+    if (store.cinemaList.length === 0) {
         // 获取电影数据
         store.getCinemaList()
     }
@@ -46,7 +49,7 @@ onBeforeMount(()=> {
 // })
 
 // 跳转city页面
-const toCity = ()=> {
+const toCity = () => {
     router.push('/city')
 }
 </script>
