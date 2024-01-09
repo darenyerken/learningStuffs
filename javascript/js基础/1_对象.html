@@ -24,6 +24,7 @@
         // console.log(obj.hobby)
         //删除属性
         delete obj.hobby
+        Reflect.deleteProperty(obj, 'adress')
         
         //创建对象第二种
         let obj2 = Object()  //用了let可以改变变量的指向 ， 用const则不能改变指向
