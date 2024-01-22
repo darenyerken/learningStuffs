@@ -4,11 +4,13 @@
   "description": "test",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "pretest": "node test.js",
+    "test": "echo \"Error: nOo test specified\" && exit 1",
+    "posttest": "node testpost.js"
   },
   "author": "daren",
   "license": "ISC",
   "dependencies": {
-    "md5": "^2.3.0"
+    "vite": "^5.0.11"
   }
 }

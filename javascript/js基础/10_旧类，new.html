@@ -31,6 +31,17 @@
         //             4. 如果构造函数返回的是一个非原始值，则该值会作为new运算的返回值返回（千万不要这么做）
         //                 如果构造函数的返回值是一个原始值或者没有指定返回值，则新的对象将会作为返回值返回
         //                 通常不会为构造函数指定返回值
+
+        class Person {
+            name
+            age
+            sayHello() {
+                console.log('Hello')
+            }
+        }
+        const person = new Person()
+        person.name = 'ronaldo'
+        person.age = 40
     </script>
 </body>
 </html>

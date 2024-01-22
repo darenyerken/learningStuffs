@@ -51,7 +51,7 @@
 
         // 当new一个函数时候
         // - 1.创建一个新对象
-        // - 2.将函数的prototype设置为此对象的原型
+        // - 2.将此对象的原型设置为函数的prototype
         // - 3.将函数中的this设置为新对象的
         // - 4.执行函数
         // - 4.如果函数没有返回其他对象则隐式的返回this->新创建的对象
@@ -84,7 +84,7 @@
         // inp.addEventListener('keydown',function(){
         //     let a = this
         //     setTimeout(function(){
-        //         this.value = this.value.toUpperCase()
+        //         a.value = a.value.toUpperCase()
         //     },0)
         // })
 
