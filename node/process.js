@@ -18,6 +18,9 @@
     }, 1000);
 }
 
+let a = 1;
+
+
 // // 使该进程两秒后结束
 // setTimeout(function() {
 //     process.exit()
