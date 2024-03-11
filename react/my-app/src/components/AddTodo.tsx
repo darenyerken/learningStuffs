@@ -9,7 +9,7 @@ export default function Addtodo({addTodo}: AddtodoProps){
     const [content, setContent] = useState("");
     // 提交表单
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        // 组织提交
+        // 阻止默认提交
         e.preventDefault();
         // 空值判断
         if(content.trim().length === 0) return;
