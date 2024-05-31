@@ -1,0 +1,4 @@
+{
+    "plugins": ["./plugins/babel_c_to_C.js","@babel/plugin-syntax-jsx"],
+    "ignore": ["node_modules"]
+}

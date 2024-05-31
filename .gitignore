@@ -1,6 +1,7 @@
 # 日志文件
 # logs
 # Logs
+GQL
 logs
 *.log
 npm-debug.log*

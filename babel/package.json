@@ -1,0 +1,17 @@
+{
+	"type": "module",
+	"devDependencies": {
+		"@babel/cli": "^7.24.6",
+		"@babel/core": "^7.24.6",
+		"@babel/plugin-syntax-jsx": "^7.24.6",
+		"@babel/preset-env": "^7.24.6",
+		"@babel/preset-react": "^7.24.6",
+		"@types/babel-generator": "^6.25.8",
+		"@types/babylon": "^6.16.9"
+	},
+	"dependencies": {
+		"babel-generator": "^6.26.1",
+		"babylon": "^6.18.0",
+		"react": "^18.3.1"
+	}
+}
